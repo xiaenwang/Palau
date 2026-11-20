@@ -1,0 +1,2303 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PALAU 2027｜帛琉南島永續實踐計畫 (N-10-3)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ocean: {
+              DEFAULT: '#0E4D64',
+              deep: '#072D3C',
+              light: '#1B7A96',
+              mist: '#E6F1F4'
+            },
+            cream: '#FAF8F4',
+            sand: {
+              DEFAULT: '#EFECE4',
+              dark: '#E2DDD0'
+            },
+            forest: {
+              DEFAULT: '#1E4D3B',
+              light: '#2F6F56',
+              mist: '#E8F0EC'
+            },
+            coral: {
+              DEFAULT: '#E07A5F',
+              light: '#F4A28C'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', '"Noto Serif TC"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '"Noto Sans TC"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FAF8F4;
+      color: #1A2428;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+      overflow-x: hidden;
+    }
+    .font-editorial {
+      font-family: 'Playfair Display', 'Noto Serif TC', serif;
+    }
+    /* Custom scrollbar for horizontal itinerary bar on mobile */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Page fade transition */
+    .page-view {
+      animation: fadeSlideIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Subtle image zoom on hover */
+    .img-zoom-wrap {
+      overflow: hidden;
+    }
+    .img-zoom-wrap img {
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .img-zoom-wrap:hover img {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="bg-cream text-[#1A2428] antialiased selection:bg-ocean selection:text-white">
+
+  <!-- Top Reading / Navigation Progress Bar -->
+  <div class="fixed top-0 left-0 right-0 h-1 z-[60] bg-sand/60">
+    <div id="scroll-progress" class="h-full bg-gradient-to-r from-ocean via-forest to-coral transition-all duration-150" style="width: 0%"></div>
+  </div>
+
+  <!-- Fixed Glassmorphism Navigation Bar -->
+  <header id="navbar" class="fixed top-1 left-0 right-0 z-50 transition-all duration-300 bg-cream/90 backdrop-blur-md border-b border-sand-dark/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Brand Logo -->
+        <button onclick="navigateTo('home')" class="flex items-center gap-3 text-left group focus:outline-none">
+          <div class="w-9 h-9 rounded-full bg-ocean text-cream flex items-center justify-center font-editorial font-bold text-sm tracking-wider shadow-sm group-hover:bg-forest transition-colors">
+            P27
+          </div>
+          <div>
+            <div class="font-editorial font-bold text-base md:text-lg tracking-wide text-ocean-deep leading-none">
+              PALAU 2027
+            </div>
+            <div class="text-[11px] text-ocean/80 tracking-widest mt-1 font-medium">
+              N-10-3 帛琉南島永續實踐計畫
+            </div>
+          </div>
+        </button>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+          <button onclick="navigateTo('home')" data-nav="home" class="nav-btn px-3 py-2 rounded-full text-sm font-medium transition-all">
+            HOME<span class="text-xs opacity-75 ml-1">首頁</span>
+          </button>
+
+          <button onclick="navigateTo('about')" data-nav="about" class="nav-btn px-3 py-2 rounded-full text-sm font-medium transition-all">
+            ABOUT<span class="text-xs opacity-75 ml-1">計畫介紹</span>
+          </button>
+
+          <button onclick="navigateTo('training')" data-nav="training" class="nav-btn px-3 py-2 rounded-full text-sm font-medium transition-all">
+            TRAINING<span class="text-xs opacity-75 ml-1">行前培訓</span>
+          </button>
+
+          <!-- ITINERARY Dropdown -->
+          <div class="relative group">
+            <button onclick="navigateTo('itinerary')" data-nav="itinerary" class="nav-btn px-3 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1">
+              ITINERARY<span class="text-xs opacity-75 ml-1">海外行程</span>
+              <svg class="w-3.5 h-3.5 opacity-70 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute left-0 mt-1 w-64 rounded-2xl bg-white shadow-xl border border-sand-dark/80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <div class="px-4 py-1.5 text-[11px] font-semibold tracking-wider text-ocean/60 uppercase">2027.07.29 — 08.12</div>
+              <button onclick="jumpToItineraryDay(0)" class="w-full text-left px-4 py-2.5 text-sm hover:bg-sand/60 flex items-center justify-between">
+                <span>7/29–8/02 海洋復育與原民部落</span>
+                <span class="text-xs text-ocean font-medium">Day 1–5</span>
+              </button>
+              <button onclick="jumpToItineraryDay(5)" class="w-full text-left px-4 py-2.5 text-sm hover:bg-sand/60 flex items-center justify-between">
+                <span>8/03–8/07 永續產業與海域生態</span>
+                <span class="text-xs text-ocean font-medium">Day 6–10</span>
+              </button>
+              <button onclick="jumpToItineraryDay(10)" class="w-full text-left px-4 py-2.5 text-sm hover:bg-sand/60 flex items-center justify-between">
+                <span>8/08–8/12 文創工藝與成果座談</span>
+                <span class="text-xs text-ocean font-medium">Day 11–15</span>
+              </button>
+              <div class="border-t border-sand my-1"></div>
+              <button onclick="navigateTo('training')" class="w-full text-left px-4 py-2 text-xs text-forest font-medium hover:bg-forest-mist/60">
+                → 查看 7/14 銘傳大學行前培訓
+              </button>
+            </div>
+          </div>
+
+          <!-- SDGs Dropdown -->
+          <div class="relative group">
+            <button onclick="navigateTo('sdgs')" data-nav="sdgs" class="nav-btn px-3 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-1">
+              SDGs<span class="text-xs opacity-75 ml-1">永續發展</span>
+              <svg class="w-3.5 h-3.5 opacity-70 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute left-0 mt-1 w-60 rounded-2xl bg-white shadow-xl border border-sand-dark/80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <div class="px-4 py-1.5 text-[11px] font-semibold tracking-wider text-forest/70 uppercase">六大核心永續目標</div>
+              <button onclick="jumpToSdg('SDG2')" class="w-full text-left px-4 py-2 text-sm hover:bg-sand/60 flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#DDA63A]"></span> SDG 2 消除飢餓
+              </button>
+              <button onclick="jumpToSdg('SDG4')" class="w-full text-left px-4 py-2 text-sm hover:bg-sand/60 flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#C5192D]"></span> SDG 4 優質教育
+              </button>
+              <button onclick="jumpToSdg('SDG11')" class="w-full text-left px-4 py-2 text-sm hover:bg-sand/60 flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FD9D24]"></span> SDG 11 永續城市與社區
+              </button>
+              <button onclick="jumpToSdg('SDG12')" class="w-full text-left px-4 py-2 text-sm hover:bg-sand/60 flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#BF8B2E]"></span> SDG 12 責任消費與生產
+              </button>
+              <button onclick="jumpToSdg('SDG14')" class="w-full text-left px-4 py-2 text-sm hover:bg-sand/60 flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#0A97D9]"></span> SDG 14 水下生命
+              </button>
+              <button onclick="jumpToSdg('SDG15')" class="w-full text-left px-4 py-2 text-sm hover:bg-sand/60 flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#56C02B]"></span> SDG 15 陸域生命
+              </button>
+            </div>
+          </div>
+
+          <button onclick="navigateTo('destination')" data-nav="destination" class="nav-btn px-3 py-2 rounded-full text-sm font-medium transition-all">
+            DESTINATION<span class="text-xs opacity-75 ml-1">探索帛琉</span>
+          </button>
+
+          <button onclick="navigateTo('outcome')" data-nav="outcome" class="nav-btn px-3 py-2 rounded-full text-sm font-medium transition-all">
+            OUTCOME<span class="text-xs opacity-75 ml-1">計畫成果</span>
+          </button>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-sand/70 text-ocean-deep hover:bg-sand focus:outline-none" aria-label="開啟選單">
+          <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-cream border-b border-sand-dark px-4 pt-2 pb-6 space-y-1 shadow-lg">
+      <button onclick="navigateTo('home'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl font-medium hover:bg-sand/70 flex justify-between">
+        <span>HOME｜首頁</span><span class="text-xs text-ocean">01</span>
+      </button>
+      <button onclick="navigateTo('about'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl font-medium hover:bg-sand/70 flex justify-between">
+        <span>ABOUT｜計畫介紹</span><span class="text-xs text-ocean">02</span>
+      </button>
+      <button onclick="navigateTo('training'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl font-medium hover:bg-sand/70 flex justify-between">
+        <span>TRAINING｜行前培訓 (7/14)</span><span class="text-xs text-ocean">03</span>
+      </button>
+      <button onclick="navigateTo('itinerary'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl font-medium hover:bg-sand/70 flex justify-between">
+        <span>ITINERARY｜海外行程 (7/29–8/12)</span><span class="text-xs text-ocean">04</span>
+      </button>
+      <button onclick="navigateTo('sdgs'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl font-medium hover:bg-sand/70 flex justify-between">
+        <span>SDGs｜永續發展目標</span><span class="text-xs text-ocean">05</span>
+      </button>
+      <button onclick="navigateTo('destination'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl font-medium hover:bg-sand/70 flex justify-between">
+        <span>DESTINATION｜探索帛琉</span><span class="text-xs text-ocean">06</span>
+      </button>
+      <button onclick="navigateTo('outcome'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl font-medium hover:bg-sand/70 flex justify-between">
+        <span>OUTCOME｜計畫成果與日誌</span><span class="text-xs text-ocean">07</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main id="app-content" class="pt-16 md:pt-20 min-h-screen">
+
+    <!-- ==================== 1. HOME PAGE ==================== -->
+    <section id="view-home" class="page-view">
+      <!-- Cinematic Full-Bleed Hero -->
+      <div class="relative min-h-[88vh] flex items-center justify-center overflow-hidden bg-ocean-deep">
+        <img
+          src="https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&w=2000&q=85"
+          onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80'"
+          alt="帛琉洛克群島空拍海景"
+          class="absolute inset-0 w-full h-full object-cover object-center scale-105 animate-[pulse_18s_ease-in-out_infinite]"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-ocean-deep/65 via-ocean-deep/45 to-ocean-deep/85"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center text-white py-20">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm tracking-widest uppercase mb-6">
+            <span class="w-2 h-2 rounded-full bg-coral"></span>
+            青年百億海外圓夢基金計畫－海外翱翔組｜計畫編號 N-10-3
+          </div>
+
+          <h1 class="font-editorial text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight mb-4 drop-shadow-sm">
+            PALAU 2027
+          </h1>
+
+          <h2 class="font-editorial text-2xl sm:text-4xl font-semibold tracking-wider text-sand mb-5">
+            帛琉南島永續實踐計畫
+          </h2>
+
+          <p class="text-base sm:text-xl text-white/90 font-light tracking-widest mb-8">
+            探索海洋、理解文化、實踐永續。
+          </p>
+
+          <div class="inline-block px-6 py-3 rounded-2xl bg-ocean-deep/60 backdrop-blur-md border border-white/20 mb-10">
+            <div class="text-[11px] uppercase tracking-[0.2em] text-sand/80 mb-1">計畫期間 PROJECT PERIOD</div>
+            <div class="font-editorial text-lg sm:text-2xl tracking-widest font-semibold text-white">
+              2027.07.29 — 2027.08.12
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button onclick="navigateTo('about')" class="w-full sm:w-auto px-8 py-4 rounded-full bg-coral hover:bg-[#d3694d] text-white font-semibold tracking-wider transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+              <span>探索計畫</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </button>
+            <button onclick="navigateTo('itinerary')" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-medium tracking-wider transition-all">
+              瀏覽 15 日海外行程
+            </button>
+          </div>
+        </div>
+
+        <!-- Scroll Cue -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-xs tracking-widest flex flex-col items-center gap-2">
+          <span>SCROLL TO DISCOVER</span>
+          <div class="w-px h-8 bg-gradient-to-b from-white/70 to-transparent"></div>
+        </div>
+      </div>
+
+      <!-- Editorial Intro & 3 Core Concepts -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-5 space-y-6">
+            <div class="text-xs font-bold tracking-[0.25em] text-ocean uppercase">EXPEDITION MANIFESTO</div>
+            <h3 class="font-editorial text-3xl sm:text-4xl font-bold text-ocean-deep leading-snug">
+              從臺灣出發，<br/>走入南島海洋與永續現場
+            </h3>
+            <p class="text-slate-600 leading-relaxed text-base">
+              「N-10-3 帛琉南島永續實踐計畫」帶領青年走進太平洋島國帛琉。透過行前田野方法訓練與十五天實地踏查，從洛克群島珊瑚礁保育、硨磲貝復育，到艾萊州百年男人會館與在地農漁市場，以平視、尊重的南島視角記錄環境與文化共生的智慧。
+            </p>
+            <div class="pt-2">
+              <button onclick="navigateTo('about')" class="text-ocean font-semibold text-sm tracking-wider inline-flex items-center gap-2 border-b-2 border-coral pb-1 hover:text-coral transition-colors">
+                閱讀完整計畫架構
+                <span>→</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 grid sm:grid-cols-3 gap-5">
+            <!-- Core 1 -->
+            <div class="bg-white p-7 rounded-3xl border border-sand-dark/70 shadow-sm hover:shadow-md transition-shadow">
+              <div class="w-12 h-12 rounded-2xl bg-ocean-mist text-ocean flex items-center justify-center mb-5">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+              </div>
+              <div class="text-xs tracking-widest text-ocean/70 font-semibold mb-1">01 / MARINE</div>
+              <h4 class="font-editorial text-xl font-bold text-ocean-deep mb-3">海洋永續</h4>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                深入洛克群島海域、硨磲貝復育行動與傳統 Bul 禁漁文化，理解海洋治理與生態復育。
+              </p>
+            </div>
+
+            <!-- Core 2 -->
+            <div class="bg-white p-7 rounded-3xl border border-sand-dark/70 shadow-sm hover:shadow-md transition-shadow">
+              <div class="w-12 h-12 rounded-2xl bg-forest-mist text-forest flex items-center justify-center mb-5">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/></svg>
+              </div>
+              <div class="text-xs tracking-widest text-forest/70 font-semibold mb-1">02 / AUSTRONESIAN</div>
+              <h4 class="font-editorial text-xl font-bold text-ocean-deep mb-3">南島文化</h4>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                走訪艾萊州古老部落、百年男人會館（Bai）與傳統戰船，體察母系社會與文化傳承。
+              </p>
+            </div>
+
+            <!-- Core 3 -->
+            <div class="bg-white p-7 rounded-3xl border border-sand-dark/70 shadow-sm hover:shadow-md transition-shadow">
+              <div class="w-12 h-12 rounded-2xl bg-[#FDF0EC] text-coral flex items-center justify-center mb-5">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div class="text-xs tracking-widest text-coral font-semibold mb-1">03 / DIALOGUE</div>
+              <h4 class="font-editorial text-xl font-bold text-ocean-deep mb-3">跨文化交流</h4>
+              <p class="text-sm text-slate-600 leading-relaxed">
+                參訪臺灣大使館、國合會農技團與水產養殖所，透過現地微訪談連結臺帛永續夥伴關係。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Program Highlights (4 Visual Magazine Cards) -->
+      <div class="bg-sand/70 py-20 border-y border-sand-dark/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+            <div>
+              <div class="text-xs font-bold tracking-[0.25em] text-forest uppercase mb-2">FIELD HIGHLIGHTS</div>
+              <h3 class="font-editorial text-3xl sm:text-4xl font-bold text-ocean-deep">計畫四大探索亮點</h3>
+            </div>
+            <button onclick="navigateTo('destination')" class="text-sm font-semibold text-ocean hover:text-coral transition-colors">
+              進入探索帛琉照片牆 →
+            </button>
+          </div>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Highlight 1 -->
+            <div onclick="jumpToItineraryDay(2)" class="group cursor-pointer bg-white rounded-3xl overflow-hidden border border-sand-dark/60 shadow-sm hover:shadow-xl transition-all">
+              <div class="img-zoom-wrap aspect-[4/5] relative">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="洛克群島與硨磲貝復育" class="w-full h-full object-cover"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-ocean-deep/85 via-transparent to-transparent"></div>
+                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-ocean-deep text-xs font-semibold">7/30 – 7/31</span>
+                <div class="absolute bottom-5 left-5 right-5 text-white">
+                  <div class="text-xs text-sand/90 mb-1">SDG 14 海洋生態</div>
+                  <h4 class="font-editorial text-xl font-bold">洛克群島與硨磲貝復育</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Highlight 2 -->
+            <div onclick="jumpToItineraryDay(4)" class="group cursor-pointer bg-white rounded-3xl overflow-hidden border border-sand-dark/60 shadow-sm hover:shadow-xl transition-all">
+              <div class="img-zoom-wrap aspect-[4/5] relative">
+                <img src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=900&q=80" alt="艾萊州百年男人會館與戰船" class="w-full h-full object-cover"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-ocean-deep/85 via-transparent to-transparent"></div>
+                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-ocean-deep text-xs font-semibold">8/02</span>
+                <div class="absolute bottom-5 left-5 right-5 text-white">
+                  <div class="text-xs text-sand/90 mb-1">SDG 11 永續城市與社區</div>
+                  <h4 class="font-editorial text-xl font-bold">百年男人會館與部落巡禮</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Highlight 3 -->
+            <div onclick="jumpToItineraryDay(3)" class="group cursor-pointer bg-white rounded-3xl overflow-hidden border border-sand-dark/60 shadow-sm hover:shadow-xl transition-all">
+              <div class="img-zoom-wrap aspect-[4/5] relative">
+                <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=900&q=80" alt="早市與國合會農漁技術交流" class="w-full h-full object-cover"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-ocean-deep/85 via-transparent to-transparent"></div>
+                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-ocean-deep text-xs font-semibold">8/01 & 8/03</span>
+                <div class="absolute bottom-5 left-5 right-5 text-white">
+                  <div class="text-xs text-sand/90 mb-1">SDG 2 & SDG 12</div>
+                  <h4 class="font-editorial text-xl font-bold">國合會技術團與永續農場</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Highlight 4 -->
+            <div onclick="jumpToItineraryDay(9)" class="group cursor-pointer bg-white rounded-3xl overflow-hidden border border-sand-dark/60 shadow-sm hover:shadow-xl transition-all">
+              <div class="img-zoom-wrap aspect-[4/5] relative">
+                <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=900&q=80" alt="藍炭紅樹林與石錢島探勘" class="w-full h-full object-cover"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-ocean-deep/85 via-transparent to-transparent"></div>
+                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 text-ocean-deep text-xs font-semibold">8/07</span>
+                <div class="absolute bottom-5 left-5 right-5 text-white">
+                  <div class="text-xs text-sand/90 mb-1">SDG 14 & SDG 15</div>
+                  <h4 class="font-editorial text-xl font-bold">藍炭紅樹林與石錢島探勘</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Preview & SDGs Preview -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-20">
+        <!-- Key Dates Strip -->
+        <div class="bg-ocean-deep text-white rounded-3xl p-8 sm:p-12 shadow-lg">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div>
+              <div class="text-xs tracking-[0.25em] text-coral uppercase font-semibold mb-2">IMPORTANT MILESTONES</div>
+              <h3 class="font-editorial text-2xl sm:text-3xl font-bold">計畫重要時程一覽</h3>
+            </div>
+            <div class="grid sm:grid-cols-3 gap-6 flex-1 max-w-3xl">
+              <div onclick="navigateTo('training')" class="cursor-pointer bg-white/10 hover:bg-white/15 transition-colors p-5 rounded-2xl border border-white/15">
+                <div class="text-xs text-sand/75 mb-1">行前培訓（必參加）</div>
+                <div class="font-editorial text-xl font-bold text-coral">2027.07.14</div>
+                <div class="text-xs text-white/80 mt-1">銘傳大學基河校區 J616</div>
+              </div>
+              <div onclick="jumpToItineraryDay(0)" class="cursor-pointer bg-white/10 hover:bg-white/15 transition-colors p-5 rounded-2xl border border-white/15">
+                <div class="text-xs text-sand/75 mb-1">海外實踐啟程</div>
+                <div class="font-editorial text-xl font-bold text-white">2027.07.29</div>
+                <div class="text-xs text-white/80 mt-1">桃園機場 → 帛琉共識座談</div>
+              </div>
+              <div onclick="jumpToItineraryDay(14)" class="cursor-pointer bg-white/10 hover:bg-white/15 transition-colors p-5 rounded-2xl border border-white/15">
+                <div class="text-xs text-sand/75 mb-1">成果交流與返程</div>
+                <div class="font-editorial text-xl font-bold text-white">2027.08.12</div>
+                <div class="text-xs text-white/80 mt-1">SEG 綜合座談 → 返抵臺灣</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 SDGs Preview -->
+        <div>
+          <div class="text-center max-w-2xl mx-auto mb-10">
+            <div class="text-xs font-bold tracking-[0.25em] text-ocean uppercase mb-2">UN SUSTAINABLE DEVELOPMENT GOALS</div>
+            <h3 class="font-editorial text-3xl font-bold text-ocean-deep mb-3">扣合六項聯合國永續發展目標</h3>
+            <p class="text-sm text-slate-600">點擊任一永續目標卡片，立即查看對應的田野調查場域與海外行程日期。</p>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4" id="home-sdg-grid">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. ABOUT PAGE ==================== -->
+    <section id="view-about" class="page-view hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <!-- Breadcrumb / Back to Home -->
+        <div class="flex items-center justify-between mb-8">
+          <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-sm font-medium text-ocean hover:text-coral transition-colors">
+            <span>←</span> 返回首頁 HOME
+          </button>
+          <span class="text-xs tracking-widest text-slate-400 uppercase">02 / ABOUT THE PROGRAM</span>
+        </div>
+
+        <!-- Header Banner -->
+        <div class="grid lg:grid-cols-12 gap-10 items-center mb-16">
+          <div class="lg:col-span-7 space-y-5">
+            <div class="inline-block px-3.5 py-1 rounded-full bg-ocean-mist text-ocean text-xs font-semibold tracking-wider">
+              青年百億海外圓夢基金計畫－海外翱翔組
+            </div>
+            <h1 class="font-editorial text-3xl sm:text-5xl font-bold text-ocean-deep leading-tight">
+              N-10-3 帛琉南島永續實踐計畫
+            </h1>
+            <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+              本計畫以太平洋友邦帛琉共和國為海外田野現場，結合行前田野調查方法論培訓與十五天實地見學，引導大學青年從「環境（E）、社會（S）、治理（G）」三大維度出發，深度理解海洋保育、南島部落文化傳承及永續產業實踐。
+            </p>
+          </div>
+          <div class="lg:col-span-5">
+            <div class="bg-white rounded-3xl p-7 border border-sand-dark shadow-sm space-y-4">
+              <div class="border-b border-sand pb-3">
+                <div class="text-xs text-slate-400 uppercase tracking-wider">計畫名稱與編號</div>
+                <div class="font-bold text-ocean-deep text-lg mt-0.5">N-10-3 帛琉南島永續實踐計畫</div>
+              </div>
+              <div class="border-b border-sand pb-3">
+                <div class="text-xs text-slate-400 uppercase tracking-wider">計畫性質</div>
+                <div class="font-medium text-slate-800 mt-0.5">青年百億海外圓夢基金計畫－海外翱翔組</div>
+              </div>
+              <div class="border-b border-sand pb-3">
+                <div class="text-xs text-slate-400 uppercase tracking-wider">行前培訓時間與地點</div>
+                <div class="font-medium text-slate-800 mt-0.5">2027 年 7 月 14 日（三）08:00–17:30</div>
+                <div class="text-xs text-ocean mt-0.5">銘傳大學基河校區 J616 會議室</div>
+              </div>
+              <div>
+                <div class="text-xs text-slate-400 uppercase tracking-wider">海外實踐期間</div>
+                <div class="font-editorial font-bold text-coral text-lg mt-0.5">2027 年 7 月 29 日 至 8 月 12 日（共 15 日）</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Infographic: 15-Day Expedition Thematic Structure -->
+        <div class="bg-white rounded-3xl p-8 sm:p-10 border border-sand-dark shadow-sm mb-16">
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+            <div>
+              <div class="text-xs font-bold tracking-[0.2em] text-forest uppercase mb-1">PROGRAM ARCHITECTURE</div>
+              <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-ocean-deep">十五日海外實踐主題架構分析</h2>
+            </div>
+            <p class="text-xs text-slate-500">依據簡章 7/29–8/12 每日行程核心主題統計</p>
+          </div>
+
+          <div class="grid md:grid-cols-4 gap-6 mb-8">
+            <div class="p-5 rounded-2xl bg-ocean-mist/60 border border-ocean/15">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-xs font-bold text-ocean uppercase">海洋生態與復育</span>
+                <span class="font-editorial font-bold text-2xl text-ocean">4 日</span>
+              </div>
+              <div class="w-full bg-white h-2 rounded-full overflow-hidden mb-3">
+                <div class="bg-ocean h-full rounded-full" style="width: 27%"></div>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">7/30 洛克群島探勘、7/31 硨磲貝野放復育、8/06 BUL 垂釣文化、8/07 石錢島海域。</p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-forest-mist/70 border border-forest/15">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-xs font-bold text-forest uppercase">部落文化與陸域生態</span>
+                <span class="font-editorial font-bold text-2xl text-forest">4 日</span>
+              </div>
+              <div class="w-full bg-white h-2 rounded-full overflow-hidden mb-3">
+                <div class="bg-forest h-full rounded-full" style="width: 27%"></div>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">8/02 艾萊州百年男人會館、8/04 天使大瀑布、8/07 藍炭紅樹林、8/10 特有種鳥類。</p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-sand/80 border border-sand-dark">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-xs font-bold text-amber-800 uppercase">永續產業與在地經濟</span>
+                <span class="font-editorial font-bold text-2xl text-amber-800">4 日</span>
+              </div>
+              <div class="w-full bg-white h-2 rounded-full overflow-hidden mb-3">
+                <div class="bg-amber-600 h-full rounded-full" style="width: 27%"></div>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">8/01 早市與國合會農漁中心、8/03 永續農場飯店、8/05 魚市場與超市、8/08 琉璃工廠。</p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-[#FDF0EC] border border-coral/20">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-xs font-bold text-coral uppercase">制度交流與田野綜整</span>
+                <span class="font-editorial font-bold text-2xl text-coral">3 日</span>
+              </div>
+              <div class="w-full bg-white h-2 rounded-full overflow-hidden mb-3">
+                <div class="bg-coral h-full rounded-full" style="width: 20%"></div>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">7/29 團隊共識座談、8/09 臺灣大使館與永續園區、8/11 微訪談綜整、8/12 SEG 座談。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 Core Directions -->
+        <div class="mb-12">
+          <div class="text-xs font-bold tracking-[0.2em] text-ocean uppercase mb-2">FIVE PILLARS</div>
+          <h2 class="font-editorial text-3xl font-bold text-ocean-deep mb-8">計畫五大核心方向</h2>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-3xl overflow-hidden border border-sand-dark shadow-sm flex flex-col">
+              <img src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=800&q=80" alt="海洋永續" class="h-48 w-full object-cover"/>
+              <div class="p-6 flex-1">
+                <span class="text-xs font-bold text-ocean tracking-widest">DIRECTION 01</span>
+                <h3 class="font-editorial text-xl font-bold text-ocean-deep mt-1 mb-2">海洋永續</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">觀察帛琉海洋生態、參與硨磲貝海域野放復育行動，並從傳統 Bul 禁漁文化中認識海洋保育機制。</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-3xl overflow-hidden border border-sand-dark shadow-sm flex flex-col">
+              <img src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=800&q=80" alt="南島文化" class="h-48 w-full object-cover"/>
+              <div class="p-6 flex-1">
+                <span class="text-xs font-bold text-forest tracking-widest">DIRECTION 02</span>
+                <h3 class="font-editorial text-xl font-bold text-ocean-deep mt-1 mb-2">南島文化</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">認識帛琉傳統部落、艾萊州百年男人會館、傳統戰船與母系社會規範，以平等平視的南島視角理解在地生活。</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-3xl overflow-hidden border border-sand-dark shadow-sm flex flex-col">
+              <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80" alt="永續產業" class="h-48 w-full object-cover"/>
+              <div class="p-6 flex-1">
+                <span class="text-xs font-bold text-amber-700 tracking-widest">DIRECTION 03</span>
+                <h3 class="font-editorial text-xl font-bold text-ocean-deep mt-1 mb-2">永續產業</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">走訪當地小農永續農場、永續餐廳、PALAU HOTEL、早市、魚市場及 Surangel’s、WCTC 超市，剖析海島產銷與市場經濟。</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-3xl overflow-hidden border border-sand-dark shadow-sm flex flex-col">
+              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="跨文化交流" class="h-48 w-full object-cover"/>
+              <div class="p-6 flex-1">
+                <span class="text-xs font-bold text-coral tracking-widest">DIRECTION 04</span>
+                <h3 class="font-editorial text-xl font-bold text-ocean-deep mt-1 mb-2">跨文化交流</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">參訪臺灣大使館、國合會農技團與水產養殖所，透過現地微訪談（Micro-Interviews）與社區對話理解不同文化。</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-3xl overflow-hidden border border-sand-dark shadow-sm flex flex-col md:col-span-2 lg:col-span-2">
+              <div class="grid sm:grid-cols-2 h-full">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="永續實踐" class="h-48 sm:h-full w-full object-cover"/>
+                <div class="p-6 sm:p-8 flex flex-col justify-center">
+                  <span class="text-xs font-bold text-ocean tracking-widest">DIRECTION 05</span>
+                  <h3 class="font-editorial text-xl font-bold text-ocean-deep mt-1 mb-3">永續實踐</h3>
+                  <p class="text-sm text-slate-600 leading-relaxed mb-5">
+                    將五感永續地圖與田野觀察結果，與聯合國永續發展目標（SDG 2、4、11、12、14、15）深度連結，轉譯為具溫度的文化與環境紀錄。
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    <button onclick="navigateTo('training')" class="px-4 py-2 rounded-full bg-ocean text-white text-xs font-medium hover:bg-ocean-deep transition-colors">
+                      查看 7/14 行前培訓 →
+                    </button>
+                    <button onclick="navigateTo('itinerary')" class="px-4 py-2 rounded-full bg-sand text-ocean-deep text-xs font-medium hover:bg-sand-dark transition-colors">
+                      查看 7/29–8/12 行程 →
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. TRAINING PAGE ==================== -->
+    <section id="view-training" class="page-view hidden">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div class="flex items-center justify-between mb-8">
+          <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-sm font-medium text-ocean hover:text-coral transition-colors">
+            <span>←</span> 返回首頁 HOME
+          </button>
+          <span class="text-xs tracking-widest text-slate-400 uppercase">03 / PRE-DEPARTURE TRAINING</span>
+        </div>
+
+        <!-- Training Info Card -->
+        <div class="bg-ocean-deep text-white rounded-3xl p-8 sm:p-10 mb-10 shadow-lg relative overflow-hidden">
+          <div class="relative z-10">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-coral/20 border border-coral/40 text-coral-light text-xs font-semibold mb-4">
+              重要規定：若無法參加視同放棄錄取資格
+            </div>
+            <h1 class="font-editorial text-3xl sm:text-4xl font-bold mb-4">行前培訓課程表</h1>
+            <p class="text-white/85 text-sm sm:text-base max-w-3xl leading-relaxed mb-6">
+              辦理主軸：1. 培訓以田野調查之方法論、ESG 永續路徑地圖與文化轉譯法為主；2. 跨文化互動與現地溝通技巧，以提升文化適切性與現場執行成效。
+            </p>
+            <div class="grid sm:grid-cols-3 gap-4 pt-4 border-t border-white/15 text-sm">
+              <div>
+                <span class="text-white/60 block text-xs">辦理日期</span>
+                <span class="font-semibold">116年（2027）7 月 14 日（三）</span>
+              </div>
+              <div>
+                <span class="text-white/60 block text-xs">課程時間</span>
+                <span class="font-semibold">上午 08:00 ～ 17:30</span>
+              </div>
+              <div>
+                <span class="text-white/60 block text-xs">辦理地點</span>
+                <span class="font-semibold">銘傳大學基河校區 J616 會議室</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+          <div class="text-sm text-slate-600">
+            點擊任一課程時段可展開詳細方法論與演練內容
+          </div>
+          <div class="flex gap-2">
+            <button onclick="toggleAllTraining(true)" class="px-4 py-2 rounded-full bg-white border border-sand-dark text-xs font-semibold text-ocean hover:bg-sand transition-colors">
+              全部展開
+            </button>
+            <button onclick="toggleAllTraining(false)" class="px-4 py-2 rounded-full bg-white border border-sand-dark text-xs font-semibold text-slate-600 hover:bg-sand transition-colors">
+              全部收合
+            </button>
+          </div>
+        </div>
+
+        <!-- Vertical Timeline Container -->
+        <div id="training-timeline" class="relative pl-6 sm:pl-10 border-l-2 border-ocean/25 space-y-6">
+          <!-- Populated dynamically from structured PDF data -->
+        </div>
+
+        <div class="mt-12 p-6 rounded-2xl bg-sand/80 border border-sand-dark flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p class="text-xs text-slate-600">※ 以上內容教育部青年發展署及合作單位保有調整及最終解釋之權利。</p>
+          <button onclick="navigateTo('itinerary')" class="px-6 py-3 rounded-full bg-ocean text-white text-sm font-semibold hover:bg-ocean-deep transition-colors whitespace-nowrap">
+            前往 7/29 海外行程表 →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. ITINERARY PAGE (CORE FEATURE) ==================== -->
+    <section id="view-itinerary" class="page-view hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+        <!-- Top Header & Progress -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div>
+            <button onclick="navigateTo('home')" class="inline-flex items-center gap-1.5 text-xs font-semibold text-ocean hover:text-coral transition-colors mb-2">
+              <span>←</span> 返回首頁 HOME
+            </button>
+            <h1 class="font-editorial text-3xl sm:text-4xl font-bold text-ocean-deep">
+              海外實踐每日行程 <span class="text-lg sm:text-2xl font-normal text-ocean ml-2">2027.07.29 — 08.12</span>
+            </h1>
+          </div>
+
+          <!-- Progress Indicator -->
+          <div class="bg-white px-5 py-3 rounded-2xl border border-sand-dark shadow-sm min-w-[240px]">
+            <div class="flex justify-between items-center text-xs font-semibold mb-1.5">
+              <span class="text-slate-500">行程探索進度</span>
+              <span id="itinerary-progress-text" class="text-ocean">Day 01 / 15 (7%)</span>
+            </div>
+            <div class="w-full h-2 bg-sand rounded-full overflow-hidden">
+              <div id="itinerary-progress-bar" class="h-full bg-gradient-to-r from-ocean to-coral transition-all duration-300" style="width: 6.66%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Horizontal Scrollable Date Selector + Quick Select -->
+        <div class="lg:hidden mb-6 space-y-3">
+          <div class="flex items-center justify-between gap-2">
+            <label for="mobile-day-select" class="text-xs font-bold text-ocean uppercase tracking-wider">快速跳轉日期：</label>
+            <select id="mobile-day-select" onchange="selectItineraryDay(parseInt(this.value))" class="flex-1 bg-white border border-sand-dark rounded-xl px-3 py-2 text-sm font-medium text-ocean-deep focus:outline-none focus:border-ocean">
+              <!-- Populated by JS -->
+            </select>
+          </div>
+          <div id="mobile-date-pills" class="flex gap-2 overflow-x-auto no-scrollbar pb-2">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Main Two-Column Layout: Left Date Sidebar + Right Editorial Detail Stage -->
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+          <!-- Left Date Menu (Desktop Sticky Sidebar) -->
+          <aside class="hidden lg:block lg:col-span-4 xl:col-span-3 sticky top-24 bg-white rounded-3xl border border-sand-dark shadow-sm p-3 max-h-[calc(100vh-7.5rem)] overflow-y-auto">
+            <div class="px-3 py-2 text-[11px] font-bold tracking-[0.2em] text-slate-400 uppercase border-b border-sand mb-2 flex justify-between">
+              <span>15-DAY SCHEDULE</span>
+              <span>民國 116 年</span>
+            </div>
+            <div id="desktop-date-list" class="space-y-1">
+              <!-- Populated by JS -->
+            </div>
+          </aside>
+
+          <!-- Right Itinerary Detail Stage -->
+          <div class="lg:col-span-8 xl:col-span-9">
+            <article id="itinerary-detail-card" class="bg-white rounded-3xl border border-sand-dark shadow-sm overflow-hidden transition-all duration-300">
+              <!-- Populated dynamically by selectItineraryDay() -->
+            </article>
+
+            <!-- Bottom Prev / Next Controls & Official Note -->
+            <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-sand/70 p-4 sm:p-5 rounded-2xl border border-sand-dark">
+              <button id="btn-prev-day" onclick="changeItineraryDay(-1)" class="w-full sm:w-auto px-6 py-3 rounded-full bg-white border border-sand-dark text-ocean-deep font-semibold text-sm hover:bg-ocean hover:text-white disabled:opacity-40 disabled:pointer-events-none transition-all flex items-center justify-center gap-2">
+                <span>←</span> 上一天
+              </button>
+
+              <div class="text-center text-xs text-slate-500">
+                行程將視實際情況細節可能略有調整｜教育部青年發展署及合作單位保有調整及最終解釋之權利
+              </div>
+
+              <button id="btn-next-day" onclick="changeItineraryDay(1)" class="w-full sm:w-auto px-6 py-3 rounded-full bg-ocean text-white font-semibold text-sm hover:bg-ocean-deep disabled:opacity-40 disabled:pointer-events-none transition-all flex items-center justify-center gap-2">
+                下一天 <span>→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. SDGs PAGE ==================== -->
+    <section id="view-sdgs" class="page-view hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div class="flex items-center justify-between mb-8">
+          <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-sm font-medium text-ocean hover:text-coral transition-colors">
+            <span>←</span> 返回首頁 HOME
+          </button>
+          <span class="text-xs tracking-widest text-slate-400 uppercase">05 / SUSTAINABLE DEVELOPMENT GOALS</span>
+        </div>
+
+        <div class="max-w-3xl mb-12">
+          <div class="text-xs font-bold tracking-[0.25em] text-forest uppercase mb-2">GLOBAL GOALS IN PALAU</div>
+          <h1 class="font-editorial text-3xl sm:text-5xl font-bold text-ocean-deep mb-4">永續發展目標 SDGs 專區</h1>
+          <p class="text-slate-600 text-base leading-relaxed">
+            本計畫將行前培訓所學之「E 環境、S 社會、G 治理」田野觀察法，實際對應至六項聯合國永續發展目標。點擊任一目標卡片可展開詳細田野指標，並直接跳轉至對應的海外行程日期。
+          </p>
+        </div>
+
+        <!-- Visual Relationship Chart (SDGs x Field Days) -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-sand-dark shadow-sm mb-12">
+          <h2 class="font-editorial text-xl sm:text-2xl font-bold text-ocean-deep mb-2">永續目標 × 海外行程關聯圖表</h2>
+          <p class="text-xs text-slate-500 mb-6">點擊圖表中的日期標籤，可直接跳轉至該日詳細行程</p>
+          <div id="sdg-matrix-chart" class="space-y-3">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- 6 Interactive SDG Cards -->
+        <div id="sdg-cards-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. DESTINATION PAGE ==================== -->
+    <section id="view-destination" class="page-view hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div class="flex items-center justify-between mb-8">
+          <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-sm font-medium text-ocean hover:text-coral transition-colors">
+            <span>←</span> 返回首頁 HOME
+          </button>
+          <span class="text-xs tracking-widest text-slate-400 uppercase">06 / EXPLORE PALAU</span>
+        </div>
+
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+          <div>
+            <div class="text-xs font-bold tracking-[0.25em] text-ocean uppercase mb-2">VISUAL FIELD GUIDE</div>
+            <h1 class="font-editorial text-3xl sm:text-5xl font-bold text-ocean-deep">探索帛琉</h1>
+          </div>
+          <p class="text-sm text-slate-600 max-w-xl">
+            涵蓋海洋生態、原民文化、永續產業、自然景觀、在地經濟與文創工藝六大主題場域。點擊照片可放大瀏覽，點擊日期標籤可跳轉至當日行程。
+          </p>
+        </div>
+
+        <!-- Category Filter Bar -->
+        <div id="destination-filters" class="flex flex-wrap gap-2 mb-10">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Photo Gallery Grid -->
+        <div id="destination-gallery" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 7. OUTCOME & FIELD JOURNAL PAGE ==================== -->
+    <section id="view-outcome" class="page-view hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div class="flex items-center justify-between mb-8">
+          <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-sm font-medium text-ocean hover:text-coral transition-colors">
+            <span>←</span> 返回首頁 HOME
+          </button>
+          <span class="text-xs tracking-widest text-slate-400 uppercase">07 / OUTCOME & FIELD JOURNAL</span>
+        </div>
+
+        <!-- Expected Learning Outcomes -->
+        <div class="mb-16">
+          <div class="text-xs font-bold tracking-[0.25em] text-forest uppercase mb-2">LEARNING OUTCOMES</div>
+          <h1 class="font-editorial text-3xl sm:text-5xl font-bold text-ocean-deep mb-4">計畫預期學習成果</h1>
+          <p class="text-slate-600 max-w-3xl mb-10">
+            透過 7/14 行前田野培訓與 7/29–8/12 帛琉實地踏查，參與青年將於六大核心面向累積質性觀察與跨文化轉譯能力：
+          </p>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-3xl border border-sand-dark shadow-sm">
+              <div class="text-xs font-bold text-ocean mb-2">OUTCOME 01</div>
+              <h3 class="font-editorial text-xl font-bold text-ocean-deep mb-2">海洋生態與環境永續觀察</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">辨識帛琉海洋與森林示範區中「減塑、低碳、防曬乳禁用」及硨磲貝復育之環境治理足跡。</p>
+            </div>
+            <div class="bg-white p-6 rounded-3xl border border-sand-dark shadow-sm">
+              <div class="text-xs font-bold text-forest mb-2">OUTCOME 02</div>
+              <h3 class="font-editorial text-xl font-bold text-ocean-deep mb-2">南島文化與部落生活理解</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">從艾萊州百年男人會館（Bai）、傳統戰船與母系社會規範中，體察部落主體性與文化傳承。</p>
+            </div>
+            <div class="bg-white p-6 rounded-3xl border border-sand-dark shadow-sm">
+              <div class="text-xs font-bold text-amber-700 mb-2">OUTCOME 03</div>
+              <h3 class="font-editorial text-xl font-bold text-ocean-deep mb-2">永續農業及在地產業調查</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">從早市、魚市場、超級市場到小農農場與國合會農漁中心，建立海島糧食與永續產業認知。</p>
+            </div>
+            <div class="bg-white p-6 rounded-3xl border border-sand-dark shadow-sm">
+              <div class="text-xs font-bold text-coral mb-2">OUTCOME 04</div>
+              <h3 class="font-editorial text-xl font-bold text-ocean-deep mb-2">跨文化交流與現地微訪談</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">運用 5–10 分鐘開放式提問與英語田野破冰技巧，與在地導覽員、店家及外交人員建立互信對話。</p>
+            </div>
+            <div class="bg-white p-6 rounded-3xl border border-sand-dark shadow-sm">
+              <div class="text-xs font-bold text-ocean mb-2">OUTCOME 05</div>
+              <h3 class="font-editorial text-xl font-bold text-ocean-deep mb-2">影像紀錄與文化轉譯</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">實踐 Photo-Elicitation 影像導引法與 Storytelling 故事架構法，以平視南島視角轉譯低碳故事。</p>
+            </div>
+            <div class="bg-white p-6 rounded-3xl border border-sand-dark shadow-sm">
+              <div class="text-xs font-bold text-forest mb-2">OUTCOME 06</div>
+              <h3 class="font-editorial text-xl font-bold text-ocean-deep mb-2">田野觀察及質性資料整理</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">運用「永續路徑筆記本」記錄五感永續地圖，並於 8/11–8/12 完成微訪談綜整與 SEG 綜合座談。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Template: My Palau Field Journal (Empty user-fillable template, no fabricated entries) -->
+        <div class="bg-white rounded-3xl border border-sand-dark shadow-md overflow-hidden">
+          <div class="bg-ocean-deep text-white p-7 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-xs tracking-wider mb-3">
+                INTERACTIVE FIELD NOTEBOOK TEMPLATE
+              </div>
+              <h2 class="font-editorial text-2xl sm:text-3xl font-bold">我的帛琉探索日誌</h2>
+              <p class="text-sm text-white/80 mt-2 max-w-2xl">
+                依據「永續路徑筆記本」與五感永續地圖架構設計之實作模板。選擇日期後即可自動帶入當日官方行程與 SDGs，供學員於海外實踐期間親自記錄觀察與反思（資料將自動暫存於您的瀏覽器中）。
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="exportJournalText()" class="px-5 py-2.5 rounded-full bg-coral hover:bg-[#d3694d] text-white text-xs font-semibold transition-colors">
+                複製當日日誌文字
+              </button>
+              <button onclick="clearCurrentJournal()" class="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs transition-colors">
+                清空當日欄位
+              </button>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-10 grid lg:grid-cols-12 gap-8">
+            <!-- Left: Date & Official Context -->
+            <div class="lg:col-span-5 space-y-6">
+              <div>
+                <label for="journal-day-select" class="block text-xs font-bold tracking-wider text-ocean uppercase mb-2">
+                  選擇探索日期（7/29 — 8/12）
+                </label>
+                <select id="journal-day-select" onchange="loadJournalDay(parseInt(this.value))" class="w-full rounded-2xl border border-sand-dark bg-cream px-4 py-3 text-sm font-semibold text-ocean-deep focus:outline-none focus:border-ocean">
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+
+              <div class="bg-sand/60 rounded-2xl p-5 border border-sand-dark space-y-4">
+                <div>
+                  <div class="text-xs font-bold text-ocean uppercase tracking-wider mb-1">今日探索｜活動與地點</div>
+                  <div id="journal-official-title" class="font-editorial font-bold text-lg text-ocean-deep"></div>
+                  <ul id="journal-official-activities" class="mt-2 space-y-1.5 text-sm text-slate-700 list-disc list-inside"></ul>
+                </div>
+
+                <div class="pt-3 border-t border-sand-dark">
+                  <div class="text-xs font-bold text-forest uppercase tracking-wider mb-2">今日永續議題｜對應 SDGs</div>
+                  <div id="journal-official-sdgs" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <div class="pt-3 border-t border-sand-dark">
+                  <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">今日照片｜行程場域參考影像</div>
+                  <div class="rounded-xl overflow-hidden aspect-video relative group cursor-pointer" onclick="openJournalImageLightbox()">
+                    <img id="journal-official-img" src="" alt="當日探索場域" class="w-full h-full object-cover"/>
+                    <div class="absolute bottom-2 right-2 bg-black/60 text-white text-[11px] px-2.5 py-1 rounded-full">
+                      點擊放大檢視
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Clean User-Fillable Field Observation & Reflection Form -->
+            <div class="lg:col-span-7 space-y-6">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold tracking-widest text-slate-400 uppercase">FIELD LOG ENTRY（學員實地填寫區）</span>
+                <span id="journal-save-status" class="text-xs text-forest font-medium">尚未填寫紀錄</span>
+              </div>
+
+              <div>
+                <label for="journal-observation" class="block text-sm font-bold text-ocean-deep mb-1.5">
+                  今日觀察｜海洋、文化、產業的五感永續紀錄
+                </label>
+                <p class="text-xs text-slate-500 mb-2">
+                  引導提示：今天在現場看見、聽見或體驗到哪些 E（環境）、S（社會）、G（治理）線索？
+                </p>
+                <textarea
+                  id="journal-observation"
+                  rows="5"
+                  oninput="saveJournalDay()"
+                  placeholder="請在此輸入您的實地田野觀察紀錄（例如：地點細節、受訪者對話重點、環境治理現象）..."
+                  class="w-full rounded-2xl border border-sand-dark bg-cream/60 p-4 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-ocean transition-colors"
+                ></textarea>
+              </div>
+
+              <div>
+                <label for="journal-reflection" class="block text-sm font-bold text-ocean-deep mb-1.5">
+                  今日心得｜文化轉譯與學習反思
+                </label>
+                <p class="text-xs text-slate-500 mb-2">
+                  引導提示：以平等、平視的南島視角思考，今日的所見所聞帶給你什麼跨文化啟發？
+                </p>
+                <textarea
+                  id="journal-reflection"
+                  rows="5"
+                  oninput="saveJournalDay()"
+                  placeholder="請在此留下您今日的學習體悟與文化轉譯思考..."
+                  class="w-full rounded-2xl border border-sand-dark bg-cream/60 p-4 text-sm text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-ocean transition-colors"
+                ></textarea>
+              </div>
+
+              <!-- Toast Feedback Box -->
+              <div id="journal-toast" class="hidden px-4 py-3 rounded-xl bg-forest-mist text-forest text-xs font-medium border border-forest/20">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Magazine Footer -->
+  <footer class="bg-ocean-deep text-white border-t border-white/10 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid md:grid-cols-12 gap-10 pb-10 border-b border-white/15">
+        <div class="md:col-span-5 space-y-3">
+          <div class="font-editorial text-2xl font-bold tracking-wider">PALAU 2027</div>
+          <div class="text-base font-medium text-sand">N-10-3 帛琉南島永續實踐計畫</div>
+          <p class="text-xs text-white/70 leading-relaxed">
+            青年百億海外圓夢基金計畫－海外翱翔組<br/>
+            行前培訓：2027 年 7 月 14 日（銘傳大學基河校區 J616 會議室）<br/>
+            海外期程：2027 年 7 月 29 日 至 8 月 12 日
+          </p>
+        </div>
+
+        <div class="md:col-span-4 space-y-2">
+          <div class="text-xs font-bold tracking-widest text-coral uppercase mb-3">SITE NAVIGATION</div>
+          <div class="grid grid-cols-2 gap-2 text-sm text-white/80">
+            <button onclick="navigateTo('home')" class="text-left hover:text-white">HOME｜首頁</button>
+            <button onclick="navigateTo('about')" class="text-left hover:text-white">ABOUT｜計畫介紹</button>
+            <button onclick="navigateTo('training')" class="text-left hover:text-white">TRAINING｜行前培訓</button>
+            <button onclick="navigateTo('itinerary')" class="text-left hover:text-white">ITINERARY｜海外行程</button>
+            <button onclick="navigateTo('sdgs')" class="text-left hover:text-white">SDGs｜永續發展</button>
+            <button onclick="navigateTo('destination')" class="text-left hover:text-white">DESTINATION｜探索帛琉</button>
+            <button onclick="navigateTo('outcome')" class="text-left hover:text-white">OUTCOME｜計畫成果</button>
+          </div>
+        </div>
+
+        <div class="md:col-span-3 space-y-3">
+          <div class="text-xs font-bold tracking-widest text-coral uppercase">OFFICIAL NOTICE</div>
+          <p class="text-xs text-white/70 leading-relaxed">
+            本網站行程與課程內容嚴格依據「N-10-3 帛琉南島永續實踐計畫」簡章編製。行程將視實際情況細節可能略有調整，教育部青年發展署及合作單位保有調整及最終解釋之權利。
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
+        <div>© 2027 PALAU 2027 帛琉南島永續實踐計畫 (N-10-3). All rights reserved.</div>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-white/80 hover:text-coral transition-colors">
+          回到頂部 ↑
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Full-Screen Photo Lightbox Modal -->
+  <div id="lightbox-modal" onclick="closeLightbox(event)" class="fixed inset-0 z-[70] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8">
+    <div class="relative max-w-5xl w-full bg-ocean-deep rounded-3xl overflow-hidden border border-white/15 shadow-2xl" onclick="event.stopPropagation()">
+      <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/60 hover:bg-coral text-white flex items-center justify-center transition-colors" aria-label="關閉燈箱">
+        ✕
+      </button>
+      <div class="bg-black flex items-center justify-center max-h-[72vh]">
+        <img id="lightbox-img" src="" alt="" class="max-h-[72vh] w-auto object-contain"/>
+      </div>
+      <div class="p-5 sm:p-6 bg-ocean-deep text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <div id="lightbox-tag" class="text-xs text-coral font-semibold tracking-wider uppercase mb-1"></div>
+          <h3 id="lightbox-title" class="font-editorial text-lg sm:text-xl font-bold"></h3>
+          <p id="lightbox-desc" class="text-xs sm:text-sm text-white/80 mt-1"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Structured Application Data & Interactive Logic -->
+  <script>
+    // ==================== 1. CENTRALIZED OFFICIAL DATA (STRICTLY FROM PDF) ====================
+
+    // SDGs Metadata
+    const SDGS_DATA = {
+      SDG2: {
+        code: 'SDG 2',
+        number: '2',
+        name: '消除飢餓',
+        en: 'Zero Hunger',
+        color: '#DDA63A',
+        bgSoft: '#FDF6E7',
+        image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=900&q=80',
+        summary: '對應農業、畜牧及水產養殖相關參訪，觀察海島糧食自給與農漁產業升級。',
+        detail: '透過走訪當地早市市場經濟運作，並參訪邦交國合作據點——國合會農技團畜牧中心與水產養殖所，理解臺灣與帛琉在農業技術轉移、永續養殖與糧食安全上的實質合作。',
+        fieldFocus: ['當地早市食材與消費結構觀察', '國合會農技團畜牧中心技術交流', '海島糧食供應鏈與永續生產模式'],
+        days: [3] // index in ITINERARY_DATA (8/1)
+      },
+      SDG4: {
+        code: 'SDG 4',
+        number: '4',
+        name: '優質教育',
+        en: 'Quality Education',
+        color: '#C5192D',
+        bgSoft: '#FCECEF',
+        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80',
+        summary: '對應田野觀察、微訪談與學習成果整理，實踐跨文化永續教育。',
+        detail: '將行前培訓所學之五感永續地圖、Photo-Elicitation 影像導引法與開放式微訪談技巧應用於實地場域，並進行系統化的質性資料綜整與補充訪談，深化青年全球移動力與永續素養。',
+        fieldFocus: ['田野觀察筆記與質性資料綜整', '現地微訪談（Micro-Interviews）實作與補充', '跨文化理解與南島文化轉譯學習'],
+        days: [13] // 8/11
+      },
+      SDG11: {
+        code: 'SDG 11',
+        number: '11',
+        name: '永續城市與社區',
+        en: 'Sustainable Cities & Communities',
+        color: '#FD9D24',
+        bgSoft: '#FFF4E5',
+        image: 'https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=900&q=80',
+        summary: '對應帛琉傳統部落文化、永續城市及政治制度體察，守護文化與自然遺產。',
+        detail: '走訪帛琉私人博物館、艾萊州百年男人會館（Bai）、傳統戰船與古老部落，並參訪泛太平洋度假村永續生態園區與臺灣大使館，理解傳統社區治理與現代永續發展的平衡。',
+        fieldFocus: ['艾萊州百年男人會館與古老部落文化保存', '泛太平洋度假村永續生態園區規劃', '臺灣大使館參訪與雙邊永續制度交流'],
+        days: [4, 11] // 8/2, 8/9
+      },
+      SDG12: {
+        code: 'SDG 12',
+        number: '12',
+        name: '責任消費與生產',
+        en: 'Responsible Consumption & Production',
+        color: '#BF8B2E',
+        bgSoft: '#FAF3E6',
+        image: 'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=900&q=80',
+        summary: '對應永續農場、永續餐廳、飯店、市場經濟及循環文創工藝觀察。',
+        detail: '從小農永續農場、永續餐廳、PALAU HOTEL，到魚市場、Surangel’s Supercenter 與 WCTC 超市產銷物流，再延伸至 ECO GLASS FACTORY 琉璃工廠的資源再生，完整檢視海島循環經濟。',
+        fieldFocus: ['小農永續農場、永續餐廳與 PALAU HOTEL 綠色營運', '魚市場與大型超市（Surangel’s、WCTC）產銷物流', 'ECO GLASS FACTORY 琉璃工廠循環工藝與原民經濟'],
+        days: [5, 7, 10] // 8/3, 8/5, 8/8
+      },
+      SDG14: {
+        code: 'SDG 14',
+        number: '14',
+        name: '水下生命',
+        en: 'Life Below Water',
+        color: '#0A97D9',
+        bgSoft: '#E6F5FC',
+        image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80',
+        summary: '對應洛克群島海域探勘、硨磲貝復育、傳統 BUL 禁漁與石錢島海域生態觀察。',
+        detail: '多次深入洛克群島與石錢島海域探勘，參與硨磲貝海域野放復育行動、參訪國合會硨磲貝復育中心，並透過 BUL 垂釣文化體驗理解傳統海洋資源共治制度。',
+        fieldFocus: ['洛克群島與石錢島海域珊瑚礁生態探勘', '硨磲貝復育中心參訪與海域野放復育行動', '傳統 BUL 禁漁制度與垂釣文化體驗'],
+        days: [1, 2, 3, 8, 9] // 7/30, 7/31, 8/1, 8/6, 8/7
+      },
+      SDG15: {
+        code: 'SDG 15',
+        number: '15',
+        name: '陸域生命',
+        en: 'Life on Land',
+        color: '#56C02B',
+        bgSoft: '#EEF9E9',
+        image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=900&q=80',
+        summary: '對應巴貝大島天使大瀑布、藍炭紅樹林及帛琉當地特有種鳥類生態調查。',
+        detail: '從巴貝大島熱帶雨林與天使大瀑布、沿海藍炭紅樹林生態系，到帛琉當地特有種鳥類田野調查，認識海島陸域生物多樣性與森林碳匯保護。',
+        fieldFocus: ['巴貝大島天使大瀑布熱帶森林生態', '藍炭紅樹林濕地與石錢島登島生態探索', '帛琉當地特有種鳥類辨識與棲地生態解析'],
+        days: [6, 9, 12] // 8/4, 8/7, 8/10
+      }
+    };
+
+    // Pre-Departure Training Data (PDF Pages 5-7, 2027/07/14)
+    const TRAINING_SCHEDULE = [
+      {
+        time: '08:00–08:20',
+        type: '報到',
+        title: '學員報到與領取資料',
+        icon: '📋',
+        summary: '於銘傳大學基河校區 J616 會議室完成報到簽到。',
+        details: [
+          '確認學員出席狀況（註：行前培訓若無法參加視同放棄錄取資格）。',
+          '領取培訓手冊與分組識別資料，準備展開全日田野方法論與跨文化培訓。'
+        ]
+      },
+      {
+        time: '08:20–09:20',
+        type: 'Icebreaker (Team warm-up)',
+        title: '破冰與自我介紹',
+        icon: '🤝',
+        summary: '30 秒自我介紹、參與動機、個人專長；建立團隊氛圍與溝通規則。',
+        details: [
+          '每位學員進行 30 秒精準自我介紹，分享參與帛琉南島永續實踐計畫的動機與個人專長。',
+          '凝聚團隊共識，建立海外共學期間的溝通規則與互助默契。'
+        ]
+      },
+      {
+        time: '09:20–09:50',
+        type: 'Activity',
+        title: '團隊組成與角色卡抽選',
+        icon: '🎴',
+        summary: '分組與角色說明（隊長／觀察員／文化記錄／影像控管），確認團隊責任鏈。',
+        details: [
+          '完成海外田野行動分組，並透過角色卡抽選確立每位成員任務：',
+          '• 隊長：統籌小組行動節奏、時間提醒與對外聯繫協調。',
+          '• 觀察員：聚焦環境、社會與治理（ESG）現場細節與動線觀察。',
+          '• 文化記錄：負責訪談重點摘錄、五感永續筆記與脈絡整理。',
+          '• 影像控管：執行影像導引法（Photo-Elicitation）拍攝紀錄與素材管理。'
+        ]
+      },
+      {
+        time: '09:50–10:00',
+        type: 'Break',
+        title: 'Tea Time 交流與互動',
+        icon: '☕',
+        summary: '小組破冰交流與課間休息。',
+        details: ['小組成員針對各自抽到的角色卡進行初步分工討論與交流。']
+      },
+      {
+        time: '10:00–11:30',
+        type: 'Lecture',
+        title: '如何將生硬的 ESG 概念，轉化為肉眼可見的「田野線索」',
+        icon: '🔍',
+        summary: '建立 E（環境）、S（社會）、G（治理）三大實地田野觀察法。',
+        details: [
+          '• E（環境）觀察法：如何在帛琉的海洋與森林示範區中，辨識「減塑、低碳、防曬乳禁用」的環境治理足跡。',
+          '• S（社會）觀察法：如何從部落傳統會所（Bai）的維護、在地導覽員的組成，觀察部落主體性與文化傳承。',
+          '• G（治理）觀察法：理解「帛琉宣言（Palau Pledge）」與傳統「Bul 禁漁制度」如何透過法規與社區共治落實。'
+        ]
+      },
+      {
+        time: '11:30–12:30',
+        type: 'Practical Activity',
+        title: '田野紀錄實作練習',
+        icon: '📓',
+        summary: '發放「永續路徑筆記本」，學習記錄「五感永續地圖」。',
+        details: [
+          '發放專屬「永續路徑筆記本」。',
+          '指導學生如何運用「五感永續地圖（看見、聽見、體驗到的 ESG）」將抽象永續概念轉化為具體田野筆記。'
+        ]
+      },
+      {
+        time: '12:30–13:30',
+        type: 'Break',
+        title: '午休時間',
+        icon: '🍱',
+        summary: '午餐與午間休整。',
+        details: ['用餐與小組自由交流，準備下午文化轉譯與微訪談實作課程。']
+      },
+      {
+        time: '13:30–14:30',
+        type: 'Lecture + Demo',
+        title: '文化轉譯說故事 — 質性資料的感性重塑',
+        icon: '📷',
+        summary: '擔任南島文化「轉譯者」，學習 Photo-Elicitation 與 Storytelling 架構。',
+        details: [
+          '• 田野不是做報告，而是擔任南島文化「轉譯者」。',
+          '• Photo-Elicitation（影像導引法）：指導學生如何用鏡頭捕捉「有故事」的畫面（例如：一個貼著帛琉宣言的環保水瓶、一位正在修復 Bai 會所的耆老雙手）。',
+          '• 故事架構法（Storytelling）：將實地觀察的質性零碎見聞，重新編排為引人共鳴的「低碳旅遊故事」或「臺帛原民智慧對話錄」。',
+          '• 拒絕獵奇視角：學習以「平等、平視」的南島同族視角記錄文化，而非觀光客的獵奇心態。'
+        ]
+      },
+      {
+        time: '14:30–15:50',
+        type: 'Lecture + Demo',
+        title: '南島共鳴－跨文化互動與現地微訪談技巧',
+        icon: '💬',
+        summary: '以「聊天」代替問卷，掌握 5–10 分鐘 Micro-Interviews 與英語破冰句型。',
+        details: [
+          '• 現地微訪談（Micro-Interviews）技巧：如何在 5–10 分鐘的輕鬆對話中，向店家、在地青年或導覽員探詢核心議題。',
+          '• 破冰與發問藝術：避免封閉式提問，改用開放式引導（例如：自從推行帛琉宣言後，你們店裡遇到了什麼有趣的觀光客？）。',
+          '• 英語田野實戰句型：提供實用的日常田野英文破冰句型包，降低開口說英語的焦慮感。'
+        ]
+      },
+      {
+        time: '15:50–16:00',
+        type: 'Break',
+        title: 'Tea Time 交流與互動',
+        icon: '🫖',
+        summary: '課間休息與情境演練準備。',
+        details: ['小組複習英語田野破冰句型，準備進入部落倫理與情境演練沙盒。']
+      },
+      {
+        time: '16:00–17:00',
+        type: 'Lecture + Practice',
+        title: '尊重在地－部落倫理、禁忌與危機應變',
+        icon: '🌿',
+        summary: '理解帛琉母系社會規範、Bai 會所禮儀，並進行「臺帛模擬田野衝擊演練」。',
+        details: [
+          '• 帛琉部落與性別禁忌：深度了解帛琉傳統母系社會的權力結構、進入傳統會所（Bai）的穿著與性別規範，以及拜訪耆老首領的禮儀。',
+          '• 現地溝通危機處理：若在拍攝、訪談時遇到在地居民婉拒或產生誤解，如何優雅且尊重地退場與致歉。',
+          '• 【情境演練沙盒】：現場分組進行「臺帛模擬田野衝擊演練」，由講師扮演帛琉在地傳統長老或商店老闆，學生分組上前進行微訪談與破冰演練，現場給予修正回饋。'
+        ]
+      },
+      {
+        time: '17:00–17:30',
+        type: 'Feedback + Q&A',
+        title: '課程回饋 + 提問與結訓賦歸',
+        icon: '✅',
+        summary: '前測問卷填寫、行前行政注意事項宣導與綜合 Q&A。',
+        details: [
+          '• 填寫「跨文化適應力與環境素養自評量表」前測問卷。',
+          '• 行前行政注意事項宣導（護照、行李備項、網卡事宜）。',
+          '• 綜合 Q&A 與結訓賦歸。'
+        ]
+      }
+    ];
+
+    // 15-Day Overseas Itinerary (2027/07/29 - 2027/08/12)
+    // Every single day has unique, theme-matched photos (no duplicates across days)
+    const ITINERARY_DATA = [
+      {
+        dayNum: 1,
+        dateShort: '7/29',
+        dateFull: '2027.07.29 (四)｜民國 116 年 7 月 29 日',
+        title: '抵達帛琉',
+        subtitle: '啟程跨越太平洋，建立團隊行動公約',
+        summary: '由桃園國際機場搭機前往帛琉，完成住宿安排、環境熟悉與團隊行程說明及共同公約共識座談會。',
+        activities: [
+          '由桃園國際機場搭機前往帛琉',
+          '完成住宿安排與周邊環境熟悉',
+          '團隊行程說明及共同公約共識座談會'
+        ],
+        sdgs: [],
+        fieldNote: '檢視護照內的「帛琉宣言（Palau Pledge）」入境印章，確認小組分工與每日安全、環境守則。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=85',
+            caption: '由桃園國際機場啟程飛往太平洋島國帛琉'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=85',
+            caption: '抵達帛琉群島，展開為期十五日的南島永續實踐'
+          }
+        ]
+      },
+      {
+        dayNum: 2,
+        dateShort: '7/30',
+        dateFull: '2027.07.30 (五)｜民國 116 年 7 月 30 日',
+        title: '【帛琉永續海洋生態體察 I】',
+        subtitle: '洛克群島海域探勘與海洋人文初探',
+        summary: '深入世界自然與文化雙遺產「洛克群島」海域進行生態探勘，認識帛琉當地海洋人文歷史與珊瑚礁生態系。',
+        activities: [
+          '洛克群島海域探勘：當地人文與生態介紹'
+        ],
+        sdgs: ['SDG14'],
+        fieldNote: '觀察船隻航行與浮潛海域的海洋友善規範（如海洋友善防曬措施與無痕海洋守則）。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=85',
+            caption: '洛克群島清澈海域與多樣化珊瑚礁生態系'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&w=1200&q=85',
+            caption: '蕈狀石灰岩島嶼地景與潟湖海洋人文環境'
+          }
+        ]
+      },
+      {
+        dayNum: 3,
+        dateShort: '7/31',
+        dateFull: '2027.07.31 (六)｜民國 116 年 7 月 31 日',
+        title: '【帛琉永續復育實際體察 II】',
+        subtitle: '硨磲貝海域野放復育行動',
+        summary: '持續進行洛克群島海域探勘，並實際參與「硨磲海域野放復育行動」，體會海洋資源復育的具體實踐。',
+        activities: [
+          '洛克群島海域探勘：硨磲海域野放復育行動'
+        ],
+        sdgs: ['SDG14'],
+        fieldNote: '記錄硨磲貝在珊瑚礁生態系中的濾水與棲地角色，以及復育野放的執行細節。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=1200&q=85',
+            caption: '珊瑚礁海底棲地與巨型硨磲貝復育生態環境'
+          }
+        ]
+      },
+      {
+        dayNum: 4,
+        dateShort: '8/01',
+        dateFull: '2027.08.01 (日)｜民國 116 年 8 月 1 日',
+        title: '【帛琉原民部落人文踏查 I：生活與農魚產業升級】',
+        subtitle: '早市經濟觀察與臺帛國合會農漁技術合作',
+        summary: '走入帛琉當地早市觀察在地民生經濟運作，並參訪臺灣駐帛琉技術團（國合會）畜牧中心與水產養殖所硨磲貝復育中心。',
+        activities: [
+          '當地早市市場經濟運作觀察',
+          '邦交國合作交流：國合會農技團－畜牧中心',
+          '國合會水產養殖所－硨磲貝復育中心'
+        ],
+        sdgs: ['SDG2', 'SDG14'],
+        fieldNote: '比較早市在地農漁產品與進口食材比例，觀察國合會如何協助帛琉提升農畜與水產養殖自給率。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1200&q=85',
+            caption: '當地早市熱帶蔬果與在地民生經濟運作觀察'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=1200&q=85',
+            caption: '邦交國合作交流：國合會農技團畜牧與水產養殖體系'
+          }
+        ]
+      },
+      {
+        dayNum: 5,
+        dateShort: '8/02',
+        dateFull: '2027.08.02 (一)｜民國 116 年 8 月 2 日',
+        title: '【帛琉原民部落人文踏查 II：原民部落文化】',
+        subtitle: '艾萊州文化之旅與百年男人會館巡禮',
+        summary: '參訪當地帛琉私人博物館，並深入艾萊州（Airai）進行文化之旅，探訪百年男人會館（Bai）、傳統戰船與古老部落。',
+        activities: [
+          '當地帛琉私人博物館',
+          '帛琉艾萊州文化之旅：百年男人會館、戰船、古老部落巡禮'
+        ],
+        sdgs: ['SDG11'],
+        fieldNote: '遵守行前培訓所學之 Bai 會所穿著與性別規範，觀察會館建築彩繪故事與部落空間配置。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=1200&q=85',
+            caption: '帛琉傳統木造建築工藝與部落文化空間'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1544984243-ec57ea16fe25?auto=format&fit=crop&w=1200&q=85',
+            caption: '傳統獨木舟戰船工藝與南島航海文化記憶'
+          }
+        ]
+      },
+      {
+        dayNum: 6,
+        dateShort: '8/03',
+        dateFull: '2027.08.03 (二)｜民國 116 年 8 月 3 日',
+        title: '【帛琉原民部落人文踏查 III：永續產業】',
+        subtitle: '從產地到餐桌與綠色旅宿的永續實踐',
+        summary: '實地參訪當地小農永續農場、永續餐廳及永續飯店 PALAU HOTEL，探討觀光海島如何實踐責任消費與生產。',
+        activities: [
+          '參訪當地小農永續農場、永續餐廳',
+          '參訪當地永續飯店 PALAU HOTEL'
+        ],
+        sdgs: ['SDG12'],
+        fieldNote: '觀察小農農場與永續餐廳的「從產地到餐桌」短鏈供應，以及 PALAU HOTEL 的減塑與節能措施。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=85',
+            caption: '當地小農永續農場與熱帶友善耕作實踐'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=85',
+            caption: '永續飯店 PALAU HOTEL 與綠色旅宿環境管理'
+          }
+        ]
+      },
+      {
+        dayNum: 7,
+        dateShort: '8/04',
+        dateFull: '2027.08.04 (三)｜民國 116 年 8 月 4 日',
+        title: '【帛琉原民部落人文踏查 IV：觀光產業】',
+        subtitle: '巴貝大島天使大瀑布與文化觀光資源',
+        summary: '前往帛琉最大島嶼巴貝大島（Babeldaob）探訪天使大瀑布（Ngardmau Waterfall），並參訪帛琉私人博物館，認識陸域自然生態與文化觀光發展。',
+        activities: [
+          '巴貝大島天使大瀑布',
+          '帛琉私人博物館'
+        ],
+        sdgs: ['SDG15'],
+        fieldNote: '觀察巴貝大島熱帶雨林步道維護、生態旅遊承載管理與自然景觀解說方式。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1200&q=85',
+            caption: '巴貝大島熱帶雨林與天使大瀑布自然景觀'
+          }
+        ]
+      },
+      {
+        dayNum: 8,
+        dateShort: '8/05',
+        dateFull: '2027.08.05 (四)｜民國 116 年 8 月 5 日',
+        title: '【帛琉原民部落人文踏查 V：產銷物流與市場經濟】',
+        subtitle: '魚市場與兩大連鎖超市供應鏈調查',
+        summary: '深入當地魚市場觀察漁獲交易與經濟運作，並走訪當地最大超級市場 Surangel’s Supercenter－Airai 與第二大超級市場 WCTC。',
+        activities: [
+          '參訪當地魚市場經濟運作',
+          '參訪當地最大超級市場 Surangel’s Supercenter－Airai、第二大超級市場 WCTC'
+        ],
+        sdgs: ['SDG12'],
+        fieldNote: '進行零售通路田野比較：記錄 Surangel’s 與 WCTC 的在地產品專區、包裝減塑政策與物價結構。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=1200&q=85',
+            caption: '當地魚市場生鮮漁獲與沿岸漁業經濟運作'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=85',
+            caption: 'Surangel’s Supercenter 與 WCTC 連鎖超市產銷物流觀察'
+          }
+        ]
+      },
+      {
+        dayNum: 9,
+        dateShort: '8/06',
+        dateFull: '2027.08.06 (五)｜民國 116 年 8 月 6 日',
+        title: '【帛琉海域周邊人文生態體察 I】',
+        subtitle: '洛克群島海域與傳統 BUL 垂釣文化',
+        summary: '再度深入洛克群島海域探勘，並體驗帛琉傳統「BUL 垂釣文化」，認識結合傳統禁漁智慧與永續漁獲的海洋文化。',
+        activities: [
+          '洛克群島海域探勘',
+          'BUL 垂釣文化體驗'
+        ],
+        sdgs: ['SDG14'],
+        fieldNote: '向在地船長與導覽員請教「Bul（傳統禁漁令）」如何規範捕撈季節與物種，維持海洋資源永續。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85',
+            caption: '洛克群島海域探勘與傳統 BUL 海洋共治智慧'
+          }
+        ]
+      },
+      {
+        dayNum: 10,
+        dateShort: '8/07',
+        dateFull: '2027.08.07 (六)｜民國 116 年 8 月 7 日',
+        title: '【帛琉海域周邊人文生態體察 II】',
+        subtitle: '石錢島、無動力方舟與藍炭紅樹林深度踏查',
+        summary: '前往石錢島海域探勘，體驗無動力方舟與藍炭紅樹林之旅，考察當地戰爭遺跡與石錢島登島生態，並進行社區訪談與質性補充。',
+        activities: [
+          '石錢島海域探勘、無動力方舟',
+          '藍炭紅樹林之旅、當地戰爭遺跡考察、石錢島登島生態探索',
+          '社區訪談與質性補充'
+        ],
+        sdgs: ['SDG14', 'SDG15'],
+        fieldNote: '記錄紅樹林「藍碳（Blue Carbon）」固碳生態功能、雅浦石錢歷史遺跡與社區居民微訪談內容。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1200&q=85',
+            caption: '紅樹林濕地生態系與藍碳自然碳匯環境'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=85',
+            caption: '無動力方舟低碳航行與石錢島登島生態探索'
+          }
+        ]
+      },
+      {
+        dayNum: 11,
+        dateShort: '8/08',
+        dateFull: '2027.08.08 (日)｜民國 116 年 8 月 8 日',
+        title: '帛琉文創工藝與原民經濟分配體察',
+        subtitle: 'ECO GLASS FACTORY 琉璃工廠參訪',
+        summary: '參訪帛琉知名循環文創工坊「ECO GLASS FACTORY 琉璃工廠」，觀察廢棄玻璃再生工藝與原民文創經濟分配模式。',
+        activities: [
+          '帛琉文創工藝與原民經濟分配體察：ECO GLASS FACTORY 琉璃工廠'
+        ],
+        sdgs: ['SDG12'],
+        fieldNote: '觀察回收玻璃瓶如何透過在地工藝師之手轉化為具帛琉海洋意象的文創琉璃，並了解其收益分配機制。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1200&q=85',
+            caption: 'ECO GLASS FACTORY 回收玻璃再生與手工琉璃文創工藝'
+          }
+        ]
+      },
+      {
+        dayNum: 12,
+        dateShort: '8/09',
+        dateFull: '2027.08.09 (一)｜民國 116 年 8 月 9 日',
+        title: '永續城市與政治制度體察',
+        subtitle: '泛太平洋度假村永續生態園區與臺灣大使館參訪',
+        summary: '考察泛太平洋度假村永續生態園區之建立模式，並正式參訪中華民國（臺灣）駐帛琉共和國大使館，理解臺帛外交與永續合作制度。',
+        activities: [
+          '泛太平洋度假村永續生態園區建立',
+          '臺灣大使館參訪'
+        ],
+        sdgs: ['SDG11'],
+        fieldNote: '認識大型度假村如何結合原生植物復育與生態保育，並於臺灣大使館了解兩國在永續發展領域的制度協力。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1200&q=85',
+            caption: '海岸永續生態園區規劃與熱帶植被保育'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85',
+            caption: '臺帛青年跨文化對話與外交制度交流參訪'
+          }
+        ]
+      },
+      {
+        dayNum: 13,
+        dateShort: '8/10',
+        dateFull: '2027.08.10 (二)｜民國 116 年 8 月 10 日',
+        title: '永續生態田野調查',
+        subtitle: '帛琉當地特有種鳥類與生態解析',
+        summary: '進行陸域生物多樣性田野調查，認識帛琉當地特有種鳥類（如帛琉果鳩、帛琉扇尾鶲等）與其森林棲地生態解析。',
+        activities: [
+          '永續生態田野調查：帛琉當地特有種鳥類與生態解析'
+        ],
+        sdgs: ['SDG15'],
+        fieldNote: '運用五感觀察法記錄清晨鳥鳴、棲息樹種與海島特有種演化適應特徵。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=1200&q=85',
+            caption: '熱帶海島森林棲地與當地特有種鳥類生態觀察'
+          }
+        ]
+      },
+      {
+        dayNum: 14,
+        dateShort: '8/11',
+        dateFull: '2027.08.11 (三)｜民國 116 年 8 月 11 日',
+        title: '田野觀察與訪談整理',
+        subtitle: '質性資料綜整與補充微訪談',
+        summary: '彙整前十三日所累積的永續路徑筆記、影像導引素材與社區訪談內容，並針對未竟議題進行補充訪談。',
+        activities: [
+          '田野觀察',
+          '微訪談綜整',
+          '補充訪談'
+        ],
+        sdgs: ['SDG4'],
+        fieldNote: '小組共同整理「低碳旅遊故事」與「臺帛原民智慧對話錄」脈絡，確認隔日座談分享架構。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=85',
+            caption: '團隊進行田野觀察筆記彙整與質性訪談資料分析'
+          }
+        ]
+      },
+      {
+        dayNum: 15,
+        dateShort: '8/12',
+        dateFull: '2027.08.12 (四)｜民國 116 年 8 月 12 日',
+        title: '成果交流與返程',
+        subtitle: '帛琉永續 SEG 綜合座談會與載譽歸國',
+        summary: '舉辦「帛琉永續 SEG 綜合座談會與回饋交流」，完成跨文化適應力與環境素養自評量表後測問卷，隨後前往帛琉機場搭機返回桃園國際機場。',
+        activities: [
+          '帛琉永續 SEG 綜合座談會與回饋交流',
+          '跨文化適應力與環境素養自評量表後測問卷',
+          '返程準備，由帛琉機場搭機前往桃園國際機場'
+        ],
+        sdgs: [],
+        fieldNote: '於 SEG 綜合座談會分享十五日觀察洞見，完成後測問卷，為 PALAU 2027 畫下圓滿句點。',
+        images: [
+          {
+            url: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=85',
+            caption: '帛琉永續 SEG 綜合座談會與團隊學習回饋交流'
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=85',
+            caption: '帶著南島永續記憶由帛琉機場搭機返回桃園國際機場'
+          }
+        ]
+      }
+    ];
+
+    // Destination Gallery Items
+    const DESTINATIONS_DATA = [
+      {
+        name: '洛克群島海域 Rock Islands',
+        category: '海洋生態',
+        dayIndex: 1,
+        dateLabel: '7/30 & 8/06',
+        image: 'https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&w=900&q=80',
+        desc: '世界自然與文化雙遺產，以蕈狀石灰岩島群、清澈潟湖與豐富珊瑚礁生態聞名。'
+      },
+      {
+        name: '硨磲貝復育海域與養殖中心',
+        category: '海洋生態',
+        dayIndex: 2,
+        dateLabel: '7/31 & 8/01',
+        image: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?auto=format&fit=crop&w=900&q=80',
+        desc: '結合國合會水產養殖技術與海域野放行動，守護太平洋巨型硨磲貝族群。'
+      },
+      {
+        name: '石錢島海域與無動力方舟',
+        category: '海洋生態',
+        dayIndex: 9,
+        dateLabel: '8/07',
+        image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80',
+        desc: '以低碳無動力方舟探索石錢島海域、戰爭遺跡與雅浦石錢文化歷史。'
+      },
+      {
+        name: '艾萊州百年男人會館（Bai）',
+        category: '原民文化',
+        dayIndex: 4,
+        dateLabel: '8/02',
+        image: 'https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=900&q=80',
+        desc: '帛琉現存最古老的傳統男人會館，梁柱彩繪完整記錄部落神話、歷史與社會規範。'
+      },
+      {
+        name: '帛琉私人博物館與傳統戰船',
+        category: '原民文化',
+        dayIndex: 4,
+        dateLabel: '8/02 & 8/04',
+        image: 'https://images.unsplash.com/photo-1544984243-ec57ea16fe25?auto=format&fit=crop&w=900&q=80',
+        desc: '保存帛琉傳統獨木舟戰船、貝幣文化與原民生活器物的文化教育場域。'
+      },
+      {
+        name: '當地小農永續農場與永續餐廳',
+        category: '永續產業',
+        dayIndex: 5,
+        dateLabel: '8/03',
+        image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=900&q=80',
+        desc: '實踐友善土地耕作與在地食材餐飲，減少海島長途食物里程碳排。'
+      },
+      {
+        name: '永續飯店 PALAU HOTEL',
+        category: '永續產業',
+        dayIndex: 5,
+        dateLabel: '8/03',
+        image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80',
+        desc: '融合減塑政策、節能管理與在地文化推廣的綠色旅宿實踐場域。'
+      },
+      {
+        name: '巴貝大島天使大瀑布',
+        category: '自然景觀',
+        dayIndex: 6,
+        dateLabel: '8/04',
+        image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=900&q=80',
+        desc: '位於帛琉最大島嶼巴貝大島，展現壯闊熱帶雨林溪谷與淡水生態系。'
+      },
+      {
+        name: '藍炭紅樹林生態區',
+        category: '自然景觀',
+        dayIndex: 9,
+        dateLabel: '8/07',
+        image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=900&q=80',
+        desc: '海岸紅樹林具備強大固碳（Blue Carbon）與護岸功能，是海洋與陸域的交界屏障。'
+      },
+      {
+        name: '當地早市與魚市場',
+        category: '在地經濟',
+        dayIndex: 3,
+        dateLabel: '8/01 & 8/05',
+        image: 'https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=900&q=80',
+        desc: '貼近帛琉居民日常採買與沿岸漁獲交易的第一線民生經濟場域。'
+      },
+      {
+        name: 'Surangel’s Supercenter & WCTC 超市',
+        category: '在地經濟',
+        dayIndex: 7,
+        dateLabel: '8/05',
+        image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80',
+        desc: '帛琉規模最大的兩大連鎖超市，觀察海島進口物流、本地商品與消費經濟。'
+      },
+      {
+        name: 'ECO GLASS FACTORY 琉璃工廠',
+        category: '文創工藝',
+        dayIndex: 10,
+        dateLabel: '8/08',
+        image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80',
+        desc: '將回收玻璃瓶重製為精緻海洋藝術品的循環經濟工坊，兼顧環保與原民工藝收益。'
+      }
+    ];
+
+    // ==================== 2. STATE & NAVIGATION ====================
+    let currentView = 'home';
+    let currentItineraryIndex = 0; // Default 7/29 (index 0)
+    let currentDestinationFilter = '全部';
+    let currentJournalDayIndex = 0;
+
+    function navigateTo(viewName) {
+      currentView = viewName;
+      document.querySelectorAll('.page-view').forEach(sec => {
+        sec.classList.add('hidden');
+      });
+      const target = document.getElementById(`view-${viewName}`);
+      if (target) {
+        target.classList.remove('hidden');
+        // Re-trigger animation
+        target.classList.remove('page-view');
+        void target.offsetWidth;
+        target.classList.add('page-view');
+      }
+
+      // Update active nav styling
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        if (btn.dataset.nav === viewName) {
+          btn.classList.add('bg-ocean', 'text-white', 'shadow-sm');
+          btn.classList.remove('text-ocean-deep', 'hover:bg-sand');
+        } else {
+          btn.classList.remove('bg-ocean', 'text-white', 'shadow-sm');
+          btn.classList.add('text-ocean-deep', 'hover:bg-sand');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const openIcon = document.getElementById('menu-icon-open');
+      const closeIcon = document.getElementById('menu-icon-close');
+      menu.classList.toggle('hidden');
+      openIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    }
+
+    function jumpToItineraryDay(dayIndex) {
+      navigateTo('itinerary');
+      selectItineraryDay(dayIndex);
+    }
+
+    function jumpToSdg(sdgKey) {
+      navigateTo('sdgs');
+      setTimeout(() => {
+        const card = document.getElementById(`sdg-card-${sdgKey}`);
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          card.classList.add('ring-2', 'ring-coral');
+          setTimeout(() => card.classList.remove('ring-2', 'ring-coral'), 1800);
+        }
+      }, 150);
+    }
+
+    // Scroll Progress Bar
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('scroll-progress').style.width = `${Math.min(100, Math.max(0, progress))}%`;
+    });
+
+    // ==================== 3. RENDER TRAINING TIMELINE ====================
+    function renderTrainingTimeline() {
+      const container = document.getElementById('training-timeline');
+      container.innerHTML = TRAINING_SCHEDULE.map((item, idx) => `
+        <div class="relative group">
+          <!-- Timeline Dot -->
+          <div class="absolute -left-[33px] sm:-left-[49px] top-5 w-4 h-4 rounded-full bg-cream border-4 border-ocean group-hover:border-coral transition-colors"></div>
+
+          <div class="bg-white rounded-2xl border border-sand-dark shadow-sm hover:shadow-md transition-all overflow-hidden">
+            <button onclick="toggleTrainingItem(${idx})" class="w-full text-left p-5 sm:p-6 flex items-start sm:items-center justify-between gap-4 focus:outline-none">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ocean-mist text-ocean font-mono text-xs sm:text-sm font-bold whitespace-nowrap">
+                  <span>${item.icon}</span>
+                  <span>${item.time}</span>
+                </span>
+                <div>
+                  <span class="text-[11px] font-semibold tracking-wider text-forest uppercase block sm:inline sm:mr-2">${item.type}</span>
+                  <h3 class="font-editorial text-lg sm:text-xl font-bold text-ocean-deep inline">${item.title}</h3>
+                </div>
+              </div>
+              <span id="training-chevron-${idx}" class="text-ocean text-sm font-bold transition-transform duration-200 ${idx === 4 ? 'rotate-180' : ''}">
+                ▼
+              </span>
+            </button>
+
+            <div id="training-body-${idx}" class="${idx === 4 ? '' : 'hidden'} px-5 sm:px-6 pb-6 pt-1 border-t border-sand/80 bg-cream/40">
+              <p class="text-sm font-medium text-ocean-deep mb-3">${item.summary}</p>
+              <ul class="space-y-1.5 text-sm text-slate-600 leading-relaxed">
+                ${item.details.map(d => `<li>${d}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleTrainingItem(idx) {
+      const body = document.getElementById(`training-body-${idx}`);
+      const chev = document.getElementById(`training-chevron-${idx}`);
+      body.classList.toggle('hidden');
+      chev.classList.toggle('rotate-180');
+    }
+
+    function toggleAllTraining(expand) {
+      TRAINING_SCHEDULE.forEach((_, idx) => {
+        const body = document.getElementById(`training-body-${idx}`);
+        const chev = document.getElementById(`training-chevron-${idx}`);
+        if (expand) {
+          body.classList.remove('hidden');
+          chev.classList.add('rotate-180');
+        } else {
+          body.classList.add('hidden');
+          chev.classList.remove('rotate-180');
+        }
+      });
+    }
+
+    // ==================== 4. RENDER ITINERARY (INTERACTIVE 15 DAYS) ====================
+    function initItineraryControls() {
+      const desktopList = document.getElementById('desktop-date-list');
+      const mobilePills = document.getElementById('mobile-date-pills');
+      const mobileSelect = document.getElementById('mobile-day-select');
+
+      desktopList.innerHTML = ITINERARY_DATA.map((item, idx) => `
+        <button
+          onclick="selectItineraryDay(${idx})"
+          id="desk-day-btn-${idx}"
+          class="w-full text-left px-3.5 py-2.5 rounded-2xl transition-all flex items-center justify-between gap-2 group"
+        >
+          <div class="min-w-0">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold tracking-wider uppercase opacity-75">Day ${String(item.dayNum).padStart(2, '0')}</span>
+              <span class="font-editorial font-bold text-sm">${item.dateShort}</span>
+            </div>
+            <div class="text-xs truncate opacity-85 mt-0.5">${item.title.replace(/【|】/g, '')}</div>
+          </div>
+          <span class="text-xs opacity-60 group-hover:translate-x-0.5 transition-transform">›</span>
+        </button>
+      `).join('');
+
+      mobilePills.innerHTML = ITINERARY_DATA.map((item, idx) => `
+        <button
+          onclick="selectItineraryDay(${idx})"
+          id="mob-pill-btn-${idx}"
+          class="px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap border transition-all"
+        >
+          Day ${item.dayNum} (${item.dateShort})
+        </button>
+      `).join('');
+
+      mobileSelect.innerHTML = ITINERARY_DATA.map((item, idx) => `
+        <option value="${idx}">Day ${String(item.dayNum).padStart(2, '0')}｜${item.dateShort} ${item.title}</option>
+      `).join('');
+
+      selectItineraryDay(0);
+    }
+
+    function selectItineraryDay(index) {
+      if (index < 0 || index >= ITINERARY_DATA.length) return;
+      currentItineraryIndex = index;
+      const day = ITINERARY_DATA[index];
+
+      // Update Desktop Active State
+      ITINERARY_DATA.forEach((_, idx) => {
+        const dBtn = document.getElementById(`desk-day-btn-${idx}`);
+        const mPill = document.getElementById(`mob-pill-btn-${idx}`);
+        if (idx === index) {
+          dBtn.className = 'w-full text-left px-3.5 py-3 rounded-2xl bg-ocean text-white shadow-sm transition-all flex items-center justify-between gap-2';
+          mPill.className = 'px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap bg-ocean text-white border-ocean shadow-sm';
+          mPill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        } else {
+          dBtn.className = 'w-full text-left px-3.5 py-2.5 rounded-2xl text-ocean-deep hover:bg-sand/80 transition-all flex items-center justify-between gap-2';
+          mPill.className = 'px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap bg-white text-ocean-deep border-sand-dark';
+        }
+      });
+
+      document.getElementById('mobile-day-select').value = index;
+
+      // Update Progress Bar
+      const pct = Math.round(((index + 1) / ITINERARY_DATA.length) * 100);
+      document.getElementById('itinerary-progress-text').textContent = `Day ${String(day.dayNum).padStart(2, '0')} / 15 (${pct}%)`;
+      document.getElementById('itinerary-progress-bar').style.width = `${pct}%`;
+
+      // Update Prev / Next Buttons
+      document.getElementById('btn-prev-day').disabled = index === 0;
+      document.getElementById('btn-next-day').disabled = index === ITINERARY_DATA.length - 1;
+
+      // Build SDGs Badges HTML
+      const sdgBadgesHtml = day.sdgs.length > 0
+        ? day.sdgs.map(key => {
+            const s = SDGS_DATA[key];
+            return `
+              <button onclick="jumpToSdg('${key}')" style="background-color: ${s.color}" class="px-3.5 py-1.5 rounded-full text-white text-xs font-bold shadow-sm hover:opacity-90 transition-opacity inline-flex items-center gap-1.5">
+                <span>${s.code}</span>
+                <span>${s.name}</span>
+              </button>
+            `;
+          }).join('')
+        : `<span class="px-3.5 py-1.5 rounded-full bg-sand text-slate-600 text-xs font-medium">行前共識 / 成果總結日</span>`;
+
+      // Build Images Grid HTML
+      const imagesHtml = day.images.map((img, i) => `
+        <div onclick="openLightbox('${img.url}', 'Day ${String(day.dayNum).padStart(2, '0')}｜${day.dateShort}', '${day.title.replace(/'/g, "\\'")}', '${img.caption.replace(/'/g, "\\'")}')" class="group cursor-pointer rounded-2xl overflow-hidden border border-sand-dark bg-sand/30 relative">
+          <div class="img-zoom-wrap aspect-[16/10]">
+            <img src="${img.url}" alt="${img.caption}" class="w-full h-full object-cover"/>
+          </div>
+          <div class="p-3.5 bg-white flex items-center justify-between gap-2">
+            <span class="text-xs text-slate-600 font-medium">${img.caption}</span>
+            <span class="text-[11px] text-ocean font-semibold whitespace-nowrap group-hover:text-coral">放大檢視 ⤢</span>
+          </div>
+        </div>
+      `).join('');
+
+      // Render Right Card
+      const card = document.getElementById('itinerary-detail-card');
+      card.innerHTML = `
+        <div class="p-6 sm:p-10">
+          <!-- Meta Top Row -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-sand">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-coral uppercase mb-1">
+                <span>DAY ${String(day.dayNum).padStart(2, '0')} OF 15</span>
+                <span>•</span>
+                <span>${day.dateFull}</span>
+              </div>
+              <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-ocean-deep mt-1">
+                ${day.title}
+              </h2>
+              <p class="text-sm text-ocean font-medium mt-1">${day.subtitle}</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              ${sdgBadgesHtml}
+            </div>
+          </div>
+
+          <!-- Editorial Overview -->
+          <div class="py-6">
+            <p class="text-slate-700 text-base leading-relaxed">
+              ${day.summary}
+            </p>
+          </div>
+
+          <!-- Official Activities List -->
+          <div class="bg-cream rounded-2xl p-6 border border-sand-dark/80 mb-8">
+            <div class="text-xs font-bold tracking-[0.2em] text-ocean uppercase mb-4 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-ocean"></span>
+              當日正式行程內容（依據計畫簡章）
+            </div>
+            <ul class="space-y-3">
+              ${day.activities.map(act => `
+                <li class="flex items-start gap-3 text-slate-800 text-sm sm:text-base font-medium">
+                  <span class="w-5 h-5 rounded-full bg-ocean/10 text-ocean flex items-center justify-center text-xs font-bold mt-0.5 shrink-0">✓</span>
+                  <span>${act}</span>
+                </li>
+              `).join('')}
+            </ul>
+
+            <div class="mt-5 pt-4 border-t border-sand-dark/70 flex items-start gap-2.5 text-xs sm:text-sm text-forest">
+              <span class="font-bold whitespace-nowrap">田野觀察聚焦：</span>
+              <span>${day.fieldNote}</span>
+            </div>
+          </div>
+
+          <!-- Day Photos -->
+          <div>
+            <div class="text-xs font-bold tracking-[0.2em] text-slate-400 uppercase mb-4">
+              場域影像紀錄（點擊照片可放大檢視）
+            </div>
+            <div class="grid ${day.images.length > 1 ? 'sm:grid-cols-2' : 'grid-cols-1'} gap-5">
+              ${imagesHtml}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function changeItineraryDay(delta) {
+      const next = currentItineraryIndex + delta;
+      if (next >= 0 && next < ITINERARY_DATA.length) {
+        selectItineraryDay(next);
+        document.getElementById('itinerary-detail-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // ==================== 5. RENDER SDGs SECTION & HOME PREVIEW ====================
+    function renderSdgsSection() {
+      const keys = Object.keys(SDGS_DATA);
+
+      // Home Preview Grid
+      document.getElementById('home-sdg-grid').innerHTML = keys.map(key => {
+        const s = SDGS_DATA[key];
+        return `
+          <button onclick="jumpToSdg('${key}')" class="group text-left bg-white p-5 rounded-2xl border border-sand-dark shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+            <div>
+              <div style="background-color: ${s.color}" class="w-11 h-11 rounded-xl text-white font-editorial font-bold text-lg flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                ${s.number}
+              </div>
+              <div class="text-[11px] font-bold text-slate-400 uppercase">${s.code}</div>
+              <div class="font-bold text-ocean-deep text-base mt-0.5">${s.name}</div>
+            </div>
+            <div class="text-xs text-ocean font-medium mt-4 group-hover:text-coral">查看對應行程 →</div>
+          </button>
+        `;
+      }).join('');
+
+      // Matrix Relationship Chart
+      document.getElementById('sdg-matrix-chart').innerHTML = keys.map(key => {
+        const s = SDGS_DATA[key];
+        const dayChips = s.days.map(dIdx => {
+          const d = ITINERARY_DATA[dIdx];
+          return `
+            <button onclick="jumpToItineraryDay(${dIdx})" class="px-3 py-1 rounded-full bg-cream hover:bg-ocean hover:text-white border border-sand-dark text-xs font-semibold text-ocean-deep transition-colors">
+              ${d.dateShort}｜${d.title.replace(/【|】/g, '').split('：')[0]}
+            </button>
+          `;
+        }).join('');
+
+        return `
+          <div class="flex flex-col md:flex-row md:items-center gap-3 p-3.5 rounded-2xl bg-cream/70 border border-sand">
+            <div class="md:w-56 flex items-center gap-3 shrink-0">
+              <span style="background-color: ${s.color}" class="w-8 h-8 rounded-lg text-white font-bold text-xs flex items-center justify-center shrink-0">
+                ${s.number}
+              </span>
+              <div>
+                <div class="text-xs font-bold text-ocean-deep">${s.code} ${s.name}</div>
+                <div class="text-[11px] text-slate-500">${s.en}</div>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              ${dayChips}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // 6 Detailed Expandable Cards
+      document.getElementById('sdg-cards-grid').innerHTML = keys.map(key => {
+        const s = SDGS_DATA[key];
+        const dayBtns = s.days.map(dIdx => {
+          const d = ITINERARY_DATA[dIdx];
+          return `
+            <button onclick="jumpToItineraryDay(${dIdx})" class="px-3 py-1.5 rounded-full bg-ocean-mist hover:bg-ocean text-ocean hover:text-white text-xs font-semibold transition-colors">
+              前往 ${d.dateShort} (Day ${d.dayNum}) →
+            </button>
+          `;
+        }).join('');
+
+        return `
+          <div id="sdg-card-${key}" class="bg-white rounded-3xl overflow-hidden border border-sand-dark shadow-sm hover:shadow-lg transition-all flex flex-col">
+            <div class="relative h-48">
+              <img src="${s.image}" alt="${s.code} ${s.name}" class="w-full h-full object-cover"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+              <div style="background-color: ${s.color}" class="absolute top-4 left-4 px-3.5 py-1.5 rounded-xl text-white font-bold text-xs shadow">
+                ${s.code}｜${s.en}
+              </div>
+              <h3 class="absolute bottom-4 left-5 font-editorial text-2xl font-bold text-white">
+                ${s.name}
+              </h3>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <p class="text-sm font-medium text-ocean-deep mb-3">${s.summary}</p>
+                <button onclick="toggleSdgDetail('${key}')" id="sdg-toggle-btn-${key}" class="text-xs font-bold text-coral hover:underline mb-2">
+                  + 展開田野觀察指標與詳細說明
+                </button>
+                <div id="sdg-detail-box-${key}" class="hidden mt-3 p-4 rounded-2xl text-xs text-slate-700 space-y-2 leading-relaxed" style="background-color: ${s.bgSoft}">
+                  <p>${s.detail}</p>
+                  <div class="font-bold text-ocean-deep pt-1">田野觀察重點：</div>
+                  <ul class="list-disc list-inside space-y-1">
+                    ${s.fieldFocus.map(f => `<li>${f}</li>`).join('')}
+                  </ul>
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-sand">
+                <div class="text-[11px] font-bold text-slate-400 uppercase mb-2">對應海外行程日期</div>
+                <div class="flex flex-wrap gap-2">
+                  ${dayBtns}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleSdgDetail(key) {
+      const box = document.getElementById(`sdg-detail-box-${key}`);
+      const btn = document.getElementById(`sdg-toggle-btn-${key}`);
+      const isHidden = box.classList.contains('hidden');
+      box.classList.toggle('hidden');
+      btn.textContent = isHidden ? '− 收合詳細說明' : '+ 展開田野觀察指標與詳細說明';
+    }
+
+    // ==================== 6. RENDER DESTINATION GALLERY ====================
+    function renderDestinationSection() {
+      const categories = ['全部', '海洋生態', '原民文化', '永續產業', '自然景觀', '在地經濟', '文創工藝'];
+      const filterContainer = document.getElementById('destination-filters');
+
+      filterContainer.innerHTML = categories.map(cat => `
+        <button
+          onclick="filterDestinations('${cat}')"
+          class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all ${
+            currentDestinationFilter === cat
+              ? 'bg-ocean text-white shadow-sm'
+              : 'bg-white text-ocean-deep border border-sand-dark hover:bg-sand'
+          }"
+        >
+          ${cat}
+        </button>
+      `).join('');
+
+      const filtered = currentDestinationFilter === '全部'
+        ? DESTINATIONS_DATA
+        : DESTINATIONS_DATA.filter(d => d.category === currentDestinationFilter);
+
+      document.getElementById('destination-gallery').innerHTML = filtered.map(item => `
+        <div class="bg-white rounded-3xl overflow-hidden border border-sand-dark shadow-sm hover:shadow-xl transition-all flex flex-col">
+          <div onclick="openLightbox('${item.image}', '${item.category}', '${item.name.replace(/'/g, "\\'")}', '${item.desc.replace(/'/g, "\\'")}')" class="img-zoom-wrap aspect-[4/3] relative cursor-pointer group">
+            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover"/>
+            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-ocean-deep text-xs font-bold">
+              ${item.category}
+            </span>
+            <span class="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-black/60 text-white text-[11px] opacity-0 group-hover:opacity-100 transition-opacity">
+              點擊放大 ⤢
+            </span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-editorial text-xl font-bold text-ocean-deep mb-2">${item.name}</h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-4">${item.desc}</p>
+            </div>
+            <div class="pt-3 border-t border-sand flex items-center justify-between">
+              <span class="text-xs text-slate-400">行程日期：${item.dateLabel}</span>
+              <button onclick="jumpToItineraryDay(${item.dayIndex})" class="text-xs font-bold text-ocean hover:text-coral transition-colors">
+                前往當日行程 →
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterDestinations(cat) {
+      currentDestinationFilter = cat;
+      renderDestinationSection();
+    }
+
+    // ==================== 7. OUTCOME: INTERACTIVE FIELD JOURNAL TEMPLATE ====================
+    function initFieldJournal() {
+      const select = document.getElementById('journal-day-select');
+      select.innerHTML = ITINERARY_DATA.map((d, idx) => `
+        <option value="${idx}">Day ${String(d.dayNum).padStart(2, '0')}｜${d.dateShort} ${d.title}</option>
+      `).join('');
+      loadJournalDay(0);
+    }
+
+    function loadJournalDay(idx) {
+      currentJournalDayIndex = idx;
+      const day = ITINERARY_DATA[idx];
+      document.getElementById('journal-day-select').value = idx;
+      document.getElementById('journal-official-title').textContent = `${day.dateShort} ${day.title}`;
+      document.getElementById('journal-official-activities').innerHTML = day.activities.map(a => `<li>${a}</li>`).join('');
+
+      document.getElementById('journal-official-sdgs').innerHTML = day.sdgs.length > 0
+        ? day.sdgs.map(k => {
+            const s = SDGS_DATA[k];
+            return `<span style="background-color: ${s.color}" class="px-3 py-1 rounded-full text-white text-xs font-bold">${s.code} ${s.name}</span>`;
+          }).join('')
+        : `<span class="px-3 py-1 rounded-full bg-white text-slate-600 text-xs border border-sand-dark">行前共識 / 成果總結日</span>`;
+
+      document.getElementById('journal-official-img').src = day.images[0].url;
+
+      // Load saved user entries from localStorage (empty string if none)
+      const saved = JSON.parse(localStorage.getItem(`palau2027_journal_day_${idx}`) || '{}');
+      document.getElementById('journal-observation').value = saved.observation || '';
+      document.getElementById('journal-reflection').value = saved.reflection || '';
+      updateJournalStatus(saved.observation || saved.reflection);
+    }
+
+    function saveJournalDay() {
+      const obs = document.getElementById('journal-observation').value;
+      const ref = document.getElementById('journal-reflection').value;
+      localStorage.setItem(`palau2027_journal_day_${currentJournalDayIndex}`, JSON.stringify({
+        observation: obs,
+        reflection: ref,
+        updatedAt: new Date().toLocaleTimeString()
+      }));
+      updateJournalStatus(obs || ref);
+    }
+
+    function updateJournalStatus(hasContent) {
+      const statusEl = document.getElementById('journal-save-status');
+      if (hasContent && hasContent.trim().length > 0) {
+        statusEl.textContent = '✓ 已自動儲存於本機瀏覽器';
+        statusEl.className = 'text-xs text-forest font-semibold';
+      } else {
+        statusEl.textContent = '空白實作欄位（尚未填寫紀錄）';
+        statusEl.className = 'text-xs text-slate-400 font-medium';
+      }
+    }
+
+    function clearCurrentJournal() {
+      localStorage.removeItem(`palau2027_journal_day_${currentJournalDayIndex}`);
+      document.getElementById('journal-observation').value = '';
+      document.getElementById('journal-reflection').value = '';
+      updateJournalStatus(false);
+      showJournalToast('已清空當日日誌欄位。');
+    }
+
+    function exportJournalText() {
+      const day = ITINERARY_DATA[currentJournalDayIndex];
+      const obs = document.getElementById('journal-observation').value || '（尚未填寫）';
+      const ref = document.getElementById('journal-reflection').value || '（尚未填寫）';
+      const text = `【PALAU 2027 帛琉南島永續實踐計畫－探索日誌】\n日期：${day.dateFull}\n主題：${day.title}\n\n[今日觀察]\n${obs}\n\n[今日心得]\n${ref}`;
+
+      const tempArea = document.createElement('textarea');
+      tempArea.value = text;
+      document.body.appendChild(tempArea);
+      tempArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempArea);
+      showJournalToast('已將當日探索日誌複製到剪貼簿，可直接貼上至報告或筆記軟體！');
+    }
+
+    function showJournalToast(msg) {
+      const toast = document.getElementById('journal-toast');
+      toast.textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 3500);
+    }
+
+    function openJournalImageLightbox() {
+      const day = ITINERARY_DATA[currentJournalDayIndex];
+      openLightbox(day.images[0].url, day.dateShort, day.title, day.images[0].caption);
+    }
+
+    // ==================== 8. LIGHTBOX MODAL ====================
+    function openLightbox(url, tag, title, desc) {
+      document.getElementById('lightbox-img').src = url;
+      document.getElementById('lightbox-tag').textContent = tag;
+      document.getElementById('lightbox-title').textContent = title;
+      document.getElementById('lightbox-desc').textContent = desc;
+      document.getElementById('lightbox-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(event) {
+      if (!event || event.target.id === 'lightbox-modal') {
+        document.getElementById('lightbox-modal').classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ==================== 9. INITIALIZE APP ====================
+    window.addEventListener('DOMContentLoaded', () => {
+      renderTrainingTimeline();
+      initItineraryControls();
+      renderSdgsSection();
+      renderDestinationSection();
+      initFieldJournal();
+      navigateTo('home');
+    });
+  </script>
+</body>
+</html>
